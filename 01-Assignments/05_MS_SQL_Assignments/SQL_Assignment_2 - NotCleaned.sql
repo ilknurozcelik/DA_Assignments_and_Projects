@@ -164,7 +164,7 @@ WHERE product_name LIKE '2TB Red 5400 rpm SATA III 3.5 Internal NAS HDD'
 
 -- VÝEW KULLANILARAK ANA TABLO ÝLE DÝÐER ÜRÜN TABLOLARININ LEFT JOIN ÝLE BÝRLEÞTÝRÝLMESÝ
 SELECT A.customer_id, A.first_name, A.last_name,
-	REPLACE(ISNULL(FP.FIRST_PRODUCT, 'NO'),  'Polk Audio - 50 WWoofer - Black', 'YES') AS FIRST_PRODUCT,
+	REPLACE(ISNULL(FP.FIRST_PRODUCT, 'NO'),  'Polk Audio - 50 W Woofer - Black', 'YES') AS FIRST_PRODUCT,
 	REPLACE(ISNULL(SP.SECOND_PRODUCT, 'NO'), 'SB-2000 12 500W Subwoofer (Piano Gloss Black)', 'YES') AS SECOND_PRODUCT,
 	REPLACE(ISNULL(TP.THIRD_PRODUCT, 'NO'), 'Virtually Invisible 891 In-Wall Speakers (Pair)', 'YES') AS THIRD_PRODUCT
 FROM (SELECT * FROM JOINT_TABLE
@@ -181,6 +181,23 @@ LEFT JOIN (SELECT customer_id, product_name AS THIRD_PRODUCT FROM JOINT_TABLE
 ORDER BY customer_id
 
 
+/* IFF KULLANARAK ASSÝGNMENT ÇÖZÜMÜ */
+
+select distinct so.[customer_id],[first_name],[last_name],pp.[product_name]
+into #Main_Tab
+from [product].[product] 		pp
+	join [sale].[order_item] 	soi		on pp.[product_id] = soi.[product_id]
+	join [sale].[orders] 		so		on so.[order_id] = soi.[order_id]
+	join [sale].[customer]		sc		on so.[customer_id] = sc.[customer_id]
+
+select distinct customer_id,first_name,last_name 
+		,IIF(product_name = 'Polk Audio - 50 W Woofer - Black','Yes','No') as First_
+		,IIF(product_name = 'SB-2000 12 500W Subwoofer (Piano Gloss Black)','Yes','No') as Second_
+		,IIF(product_name = 'Virtually Invisible 891 In-Wall Speakers (Pair)','Yes','No') as Third_
+from #Main_Tab
+where customer_id in (select customer_id from #Main_Tab 
+						where product_name like '2TB Red 5400 rpm SATA III 3.5 Internal NAS HDD' )
+order by customer_id
 
 
 /* yan yana joýn kullanýmý*/
