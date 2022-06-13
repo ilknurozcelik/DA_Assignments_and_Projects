@@ -48,9 +48,40 @@ SELECT Adv_Type, [Action], COUNT([Action]) AS ORDERS  --Action = Order olanlarýn
 	WHERE [Action]='Order'
 	GROUP BY Adv_Type, [Action]
 
+SELECT Adv_Type, COUNT([Action]) AS ORDERS_TOTAL
+	FROM Actions.Actions
+	GROUP BY Adv_Type
 
-SELECT A.Adv_Type,
-	CAST(((A.COUNT_ORDER*1.0)/(B.ORDERS_TOTAL*1.0)) AS NUMERIC(3,2)) AS CONVERSION_RATE
+
+SELECT A.Adv_Type, A.COUNT_ORDER, B.ORDERS_TOTAL,
+	CAST(((A.COUNT_ORDER*1.0)/(B.ORDERS_TOTAL*1.0)) AS NUMERIC(10,2)) AS CONVERSION_RATE
+FROM (
+	SELECT Adv_Type, [Action], COUNT([Action]) AS COUNT_ORDER 
+	FROM Actions.Actions
+	WHERE [Action]='Order'
+	GROUP BY Adv_Type, [Action]) AS A,
+	(SELECT Adv_Type, COUNT([Action]) AS ORDERS_TOTAL
+	FROM Actions.Actions
+	GROUP BY Adv_Type) AS B
+	WHERE A.Adv_Type=B.Adv_Type
+
+
+SELECT A.Adv_Type, A.COUNT_ORDER, B.ORDERS_TOTAL,
+	CAST(CAST(A.COUNT_ORDER AS FLOAT)/CAST(B.ORDERS_TOTAL AS FLOAT)AS DECIMAL(3,2)) AS CONVERSION_RATE
+FROM (
+	SELECT Adv_Type, [Action], COUNT([Action]) AS COUNT_ORDER 
+	FROM Actions.Actions
+	WHERE [Action]='Order'
+	GROUP BY Adv_Type, [Action]) AS A,
+	(SELECT Adv_Type, COUNT([Action]) AS ORDERS_TOTAL
+	FROM Actions.Actions
+	GROUP BY Adv_Type) AS B
+	WHERE A.Adv_Type=B.Adv_Type
+
+
+
+SELECT A.Adv_Type, A.COUNT_ORDER, B.ORDERS_TOTAL,
+	CAST((A.COUNT_ORDER*1.0/B.ORDERS_TOTAL*1.0)AS DECIMAL(3,2)) AS CONVERSION_RATE
 FROM (
 	SELECT Adv_Type, [Action], COUNT([Action]) AS COUNT_ORDER 
 	FROM Actions.Actions
