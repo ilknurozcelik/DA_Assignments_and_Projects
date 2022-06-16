@@ -59,4 +59,4 @@ FROM (
 	(SELECT Adv_Type, COUNT([Action]) AS ORDERS_TOTAL
 	FROM Actions.Actions
 	GROUP BY Adv_Type) AS B
-	WHERE A.Adv_Type=B.Adv_Type
+WHERE A.Adv_Type=B.Adv_Type
