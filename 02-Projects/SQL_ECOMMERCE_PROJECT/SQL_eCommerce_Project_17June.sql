@@ -129,7 +129,9 @@ full outer join orders_dimen on market_fact.Ord_id=orders_dimen.Ord_id
 full outer join prod_dimen on market_fact.Prod_id=prod_dimen.Prod_id
 full outer join shipping_dimen on market_fact.Ship_id=shipping_dimen.Ship_id
 
--- Creating select combined_table
+/* 1. Using the columns of “market_fact”, “cust_dimen”, “orders_dimen”, 
+“prod_dimen”, “shipping_dimen”, Create a new table, named as
+“combined_table”.  */
 
 with tbl as (
 select cust_dimen.*, orders_dimen.*, prod_dimen.*,  shipping_dimen.*, market_fact.[Sales],
@@ -145,3 +147,17 @@ into combined_table
 from tbl;
 
 select * from combined_table
+
+/* 2. Find the top 3 customers who have the maximum count of orders. */select distinct top 3 Cust_id, Customer_Name,	count(Ord_id) over (partition by Cust_id) order_countfrom combined_tableorder by order_count desc/* 3. Create a new column at combined_table as DaysTakenForDelivery that 
+contains the date difference of Order_Date and Ship_Date. */select Ord_id, DATEDIFF(DAY, Order_Date, Ship_Date)DaysTakenForDeliveryfrom combined_tableorder by Ord_id, DaysTakenForDeliveryalter table combined_table add DaysTakenForDelivery INT;update combined_tableset  DaysTakenForDelivery = DATEDIFF(DAY, Order_Date, Ship_Date);/* 4. Find the customer whose order took the maximum time to get delivered. */ select top 1 Cust_id, Customer_Name, DaysTakenForDelivery from combined_table order by DaysTakenForDelivery desc /* 5. Count the total number of unique customers in January and how many of them 
+came back every month over the entire year in 2011 */-- 2011 1. aydaki unique customerselect distinct Cust_idfrom combined_tablewhere year(Order_Date) = 2011 and month(Order_Date) = 1select *from(	select Cust_id, month(Order_Date) month_, Ord_id	from combined_table	where Cust_id in (				select distinct Cust_id				from combined_table				where year(Order_Date) = 2011 and month(Order_Date) = 1)			and year(Order_Date) = 2011	--order by Cust_id, Order_Date)tblpivot(	count(Ord_id)	for month_	in ([1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12])) as pivot_table;select Cust_id,count(distinct month(order_date))
+from combined_table
+where cust_id in (select distinct cust_id
+				from combined_table
+				where year(order_date) = 2011 and month(order_date) = 1)
+			and year(order_date) = 2011
+group by  Cust_id
+having count(distinct month(order_date))=12/* 6. Write a query to return for each user the time elapsed between the first 
+purchasing and the third purchasing, in ascending order by Customer ID. */select Cust_id, order_date,	ROW_NUMBER () OVER(PARTITION BY Cust_id ORDER BY order_date) RowNumberfrom combined_tablewhere Cust_id in (	select Cust_id	from combined_table	group by Cust_id	having count(order_date) >= 3	)select Cust_id, order_date,	ROW_NUMBER () OVER(PARTITION BY Cust_id ORDER BY order_date) RowNumber,	datediff(d,order_date,lead(order_date,2,order_date) over(partition by cust_id order by order_date))time_elapsedfrom combined_tablewhere Cust_id in (	select Cust_id	from combined_table	group by Cust_id	having count(order_date) >= 3	)with tbl as(	select Cust_id, order_date,		ROW_NUMBER () OVER(PARTITION BY Cust_id ORDER BY order_date) RowNumber,		datediff(d,order_date,lead(order_date,2,order_date) over(partition by cust_id order by order_date))time_elapsed	from combined_table	where Cust_id in (		select Cust_id		from combined_table		group by Cust_id		having count(order_date) >= 3		))select Cust_id,  time_elapsedfrom tblwhere RowNumber=1-- Row number ile çözümü deneyelim./* 7. Write a query that returns customers who purchased both product 11 and 
+product 14, as well as the ratio of these products to the total number of 
+products purchased by the customer. */with tbl as(	select Cust_id, Prod_id, Order_Quantity,		sum(Order_Quantity) over (partition by Cust_id) total_product	from combined_table	where Cust_id in(		select Cust_id		from combined_table		where Prod_id = 11		INTERSECT		select Cust_id		from combined_table		where Prod_id = 14))select distinct Cust_id,	cast(1.0 * sum(Order_Quantity) over (partition by Cust_id) / total_product as decimal(3,2)) product_ratiofrom tblwhere Prod_id in (11,14)-- Aþaðýdaki kod doðru sonucu veriyor mu karþýlaþtýrýlacak?with tbl as (select Cust_id, Prod_id, Order_Quantity,		sum(Order_Quantity) over (partition by Cust_id) total_product,		sum(case when Prod_id =11 or Prod_id=14 then Order_quantity else 0 end)quantity_11_14	from combined_table	where Cust_id in(		select Cust_id		from combined_table		where Prod_id = 11		INTERSECT		select Cust_id		from combined_table		where Prod_id = 14)group by Cust_id, Prod_id, Order_Quantity)select Cust_id, sum(quantity_11_14),	cast(1.0* sum(quantity_11_14) / total_product as decimal (3,2)) product_ratiofrom tblgroup by Cust_id, total_productorder by Cust_id;
