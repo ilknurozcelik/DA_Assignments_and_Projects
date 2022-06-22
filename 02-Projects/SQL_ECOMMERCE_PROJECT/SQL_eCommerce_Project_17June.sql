@@ -160,4 +160,90 @@ group by  Cust_id
 having count(distinct month(order_date))=12/* 6. Write a query to return for each user the time elapsed between the first 
 purchasing and the third purchasing, in ascending order by Customer ID. */select Cust_id, order_date,	ROW_NUMBER () OVER(PARTITION BY Cust_id ORDER BY order_date) RowNumberfrom combined_tablewhere Cust_id in (	select Cust_id	from combined_table	group by Cust_id	having count(order_date) >= 3	)select Cust_id, order_date,	ROW_NUMBER () OVER(PARTITION BY Cust_id ORDER BY order_date) RowNumber,	datediff(d,order_date,lead(order_date,2,order_date) over(partition by cust_id order by order_date))time_elapsedfrom combined_tablewhere Cust_id in (	select Cust_id	from combined_table	group by Cust_id	having count(order_date) >= 3	)with tbl as(	select Cust_id, order_date,		ROW_NUMBER () OVER(PARTITION BY Cust_id ORDER BY order_date) RowNumber,		datediff(d,order_date,lead(order_date,2,order_date) over(partition by cust_id order by order_date))time_elapsed	from combined_table	where Cust_id in (		select Cust_id		from combined_table		group by Cust_id		having count(order_date) >= 3		))select Cust_id,  time_elapsedfrom tblwhere RowNumber=1-- Row number ile çözümü deneyelim./* 7. Write a query that returns customers who purchased both product 11 and 
 product 14, as well as the ratio of these products to the total number of 
-products purchased by the customer. */with tbl as(	select Cust_id, Prod_id, Order_Quantity,		sum(Order_Quantity) over (partition by Cust_id) total_product	from combined_table	where Cust_id in(		select Cust_id		from combined_table		where Prod_id = 11		INTERSECT		select Cust_id		from combined_table		where Prod_id = 14))select distinct Cust_id,	cast(1.0 * sum(Order_Quantity) over (partition by Cust_id) / total_product as decimal(3,2)) product_ratiofrom tblwhere Prod_id in (11,14)-- Aþaðýdaki kod doðru sonucu veriyor mu karþýlaþtýrýlacak?with tbl as (select Cust_id, Prod_id, Order_Quantity,		sum(Order_Quantity) over (partition by Cust_id) total_product,		sum(case when Prod_id =11 or Prod_id=14 then Order_quantity else 0 end)quantity_11_14	from combined_table	where Cust_id in(		select Cust_id		from combined_table		where Prod_id = 11		INTERSECT		select Cust_id		from combined_table		where Prod_id = 14)group by Cust_id, Prod_id, Order_Quantity)select Cust_id, sum(quantity_11_14),	cast(1.0* sum(quantity_11_14) / total_product as decimal (3,2)) product_ratiofrom tblgroup by Cust_id, total_productorder by Cust_id;
+products purchased by the customer. */with tbl as(	select Cust_id, Prod_id, Order_Quantity,		sum(Order_Quantity) over (partition by Cust_id) total_product	from combined_table	where Cust_id in(		select Cust_id		from combined_table		where Prod_id = 11		INTERSECT		select Cust_id		from combined_table		where Prod_id = 14))select distinct Cust_id,	cast(1.0 * sum(Order_Quantity) over (partition by Cust_id) / total_product as decimal(3,2)) product_ratiofrom tblwhere Prod_id in (11,14)-- Aþaðýdaki kod doðru sonucu veriyor mu karþýlaþtýrýlacak?with tbl as (select Cust_id, Prod_id, Order_Quantity,		sum(Order_Quantity) over (partition by Cust_id) total_product,		sum(case when Prod_id =11 or Prod_id=14 then Order_quantity else 0 end)quantity_11_14	from combined_table	where Cust_id in(		select Cust_id		from combined_table		where Prod_id = 11		INTERSECT		select Cust_id		from combined_table		where Prod_id = 14)group by Cust_id, Prod_id, Order_Quantity)select Cust_id, sum(quantity_11_14),	cast(1.0* sum(quantity_11_14) / total_product as decimal (3,2)) product_ratiofrom tblgroup by Cust_id, total_productorder by Cust_id;/* Customer Segmentation */
+
+/* Categorize customers based on their frequency of visits. The following steps 
+will guide you. If you want, you can track your own way *//* 1. Create a “view” that keeps visit logs of customers on a monthly basis. (For 
+each log, three field is kept: Cust_id, Year, Month) */alter view visit_log asselect distinct Cust_id, Year(Order_Date)Year_, Month(Order_Date)Month_, Ord_idfrom combined_table/* 2. Create a “view” that keeps the number of monthly visits by users. (Show 
+separately all months from the beginning business) */
+
+create view monthly_visits asselect distinct Cust_id, Year_, Month_,	count(*) over (partition by  Cust_id, Year_, Month_)monthly_visit_numfrom visit_log
+
+
+---------- denemeler
+
+select distinct Cust_id, Year(Order_Date)Year_, Month(Order_Date)Month_, Ord_idfrom combined_table
+where Cust_id=1163
+
+select distinct Cust_id, Year(Order_Date)Year_, Month(Order_Date)Month_, Order_date, Ord_id from combined_tablegroup by Year(Order_Date)Year_, Month(Order_Date)Month_,order by 1,2,3
+
+select distinct Cust_id, Year(Order_Date)Year_, Month(Order_Date)Month_, count(*)from combined_tablegroup by Cust_id, Year(Order_Date), Month(Order_Date)order by 1,2,3
+
+
+select *
+from combined_table
+where Cust_id =1163
+order by Order_date
+
+------
+
+
+/* 3. For each visit of customers, create the next month of the visit as a separate 
+column. */
+
+select Cust_id, Year_, Month_,
+	lead(Month_) over(partition by Cust_id, Year_ order by Month_) next_month
+from monthly_visits
+
+
+select Cust_id, Year_, Month_,
+	lead(Month_) over(partition by Cust_id, Year_ order by Month_) next_month
+from visit_log
+
+
+select Cust_id, Year_, Month_,
+	lead(Year_) over(partition by Cust_id order by Year_, Month_) next_year,
+	lead(Month_) over(partition by Cust_id order by Year_, Month_) next_month
+from visit_log
+
+select Cust_id, Year_, Month_,
+	lead(Month_) over(partition by Cust_id, Year_ order by Month_) next_month
+from visit_log
+
+/* 4. Calculate the monthly time gap between two consecutive visits by each 
+customer. */
+
+--Serdar Hoca'dan
+select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
+		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))
+from [dbo].[combined_table]
+group by cust_id, year(order_date), month(order_date), ord_id, order_date 
+order by 1,2,3,4
+
+--diðer yol
+
+select Cust_id, Year_, Month_,
+	lead(Year_) over(partition by Cust_id order by Year_, Month_) next_year,
+	lead(Month_) over(partition by Cust_id order by Year_, Month_) next_month
+from visit_log
+
+
+
+/* 5. Categorise customers using average time gaps. Choose the most fitted
+labeling model for you.For example: 
+o Labeled as churn if the customer hasn't made another purchase in the 
+months since they made their first purchase.
+o Labeled as regular if the customer has made a purchase every month.
+Etc.*/with tbl as (select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
+		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))monthly_time_gap 
+from [dbo].[combined_table]
+group by cust_id, year(order_date), month(order_date), ord_id, order_date 
+)select *,	avg(monthly_time_gap) over(partition by cust_id) avg_time_gap,	count(ord_id) over(partition by cust_id) total_order_per_custfrom tbl-- cust_id ve year partition yapýlarakwith tbl as (select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
+		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))monthly_time_gap 
+from [dbo].[combined_table]
+group by cust_id, year(order_date), month(order_date), ord_id, order_date 
+)select *,	avg(monthly_time_gap) over(partition by cust_id) avg_time_gap,	count(ord_id) over(partition by cust_id) total_order_per_cust,	avg(monthly_time_gap) over(partition by cust_id, years) avg_time_gap_wy,	count(ord_id) over(partition by cust_id, years) total_order_per_cust_wyfrom tbl-- avg_time_gap ve total_order_per_cust verilerinden gidersekwith tbl as (select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
+		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))monthly_time_gap 
+from [dbo].[combined_table]
+group by cust_id, year(order_date), month(order_date), ord_id, order_date 
+), tbl2 as (select *,	avg(monthly_time_gap) over(partition by cust_id) avg_time_gap_per_cust,	avg(monthly_time_gap) over() avg_time_gap,	count(ord_id) over(partition by cust_id) total_order_per_cust	from tbl), tbl3 as (select *from tbl2), tbl4 as (select *,	avg(total_order_per_cust) over() avg_order_count,	ntile(4) over(order by avg_time_gap_per_cust) ntile_for_avg_time_gapfrom tbl3)select *from tbl4where ntile_for_avg_time_gap=1/*Yukarýda;- müþteri bazýnda ortalama sipariþ zaman aralýðý (avg_time_gap_per_cust),- tüm veri için ortalama sipariþ zaman aralýðý (avg_time_gap),- müþteri bazýnda toplam sipariþ sayýsý (total_order_per_cust),- tüm veri için ortalama sipariþ sayýsý (avg_order_count) ve-- avg_time_gap_per_cust deðerlerine göre ntile (ntile_for_avg_time_gap) deðerlerihesaplanmýþ ve tüm bu veriler deðerlendirilerek müþterilerin categorilere ayýrýlmasý içinaþaðýdaki modelin kullanýlmasýna karar verilmiþtir.1. Sadece tek alýþveriþ yapmýþ olanlar (total_order_per_cust=1 olanlar) 'CHUNK',2. avg_time_gap_per_cust <= 4 ve total_order_per_cust > avg_time_gap_per_cust olanlar 'MOST VISITING'3. avg_time_gap_per_cust = 6 ve total_order_per_cust > avg_time_gap_per_cust ile	avg_time_gap_per_cust > 6 olanlar 'LESS VISITING'4. diðerleri ise 'MODERATE VISITING'olarak aþaðýda etiketlenmiþtir.
