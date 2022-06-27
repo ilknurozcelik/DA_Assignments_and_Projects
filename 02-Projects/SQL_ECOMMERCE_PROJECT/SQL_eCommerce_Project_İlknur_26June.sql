@@ -4,7 +4,7 @@
 
 CREATE DATABASE E_COMMERCE;
 
-	--########## IMPORTING TABLES AND ARRANGING THEM ##########--
+	--########## IMPORTING TABLES AND CLEANING THEM ##########--
 
 /* Check cust_dimen table */
 select *
@@ -128,6 +128,7 @@ pivot (
 	for Month_ in ([1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12])
 ) as pivot_table;
 
+
 ------------------
 /* 3. For each visit of customers, create the next month of the visit as a separate 
 column. */
@@ -137,48 +138,27 @@ select Cust_id, Year_, Month_,
 	lead(Month_) over(partition by Cust_id order by Year_, Month_) next_month
 from visit_log
 
+
 -------------------
 /* 4. Calculate the monthly time gap between two consecutive visits by each 
 customer. */
 
---Serdar Hoca'dan
-select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
-		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))time_gap
-from [dbo].[combined_table]
-group by cust_id, year(order_date), month(order_date), ord_id, order_date 
+select cust_id, year(order_date)year_, month(order_date)month_,
+		datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))time_gap
+from combined_table
 order by 1,2,3,4
 
---diðer yol
 
-select Cust_id, Year_, Month_,
-	lead(Year_) over(partition by Cust_id order by Year_, Month_) next_year,
-	lead(Month_) over(partition by Cust_id order by Year_, Month_) next_month
-from visit_log
-
-
-
+---------------------
 /* 5. Categorise customers using average time gaps. Choose the most fitted
 labeling model for you.For example: 
 o Labeled as churn if the customer hasn't made another purchase in the 
 months since they made their first purchase.
 o Labeled as regular if the customer has made a purchase every month.
-Etc.*/with tbl as (select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
+Etc.*//* 1st Aproach :- average time gap by customer (avg_time_gap_per_cust),- total order count by customer (total_order_per_cust),values were calculated. When we analyse all these values, customers can be categorize based on theconditions given below :1. customers having only one order (total_order_per_cust=1 olanlar) 'CHURN',2. customers having avg_time_gap_per_cust <= 4 ve total_order_per_cust > avg_time_gap_per_cust 'MOST VISITING'3. customers having avg_time_gap_per_cust = 6 ve total_order_per_cust > avg_time_gap_per_cust ile	avg_time_gap_per_cust > 6 olanlar 'LESS VISITING'4. others 'MODERATE VISITING'*/with tbl as (select cust_id, year(order_date)year_, month(order_date)month_, ord_id
 		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))monthly_time_gap 
-from [dbo].[combined_table]
-group by cust_id, year(order_date), month(order_date), ord_id, order_date 
-)select *,	avg(monthly_time_gap) over(partition by cust_id) avg_time_gap,	count(ord_id) over(partition by cust_id) total_order_per_custfrom tbl-- cust_id ve year partition yapýlarakwith tbl as (select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
-		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))monthly_time_gap 
-from [dbo].[combined_table]
-group by cust_id, year(order_date), month(order_date), ord_id, order_date 
-)select *,	avg(monthly_time_gap) over(partition by cust_id) avg_time_gap,	count(ord_id) over(partition by cust_id) total_order_per_cust,	avg(monthly_time_gap) over(partition by cust_id, years) avg_time_gap_wy,	count(ord_id) over(partition by cust_id, years) total_order_per_cust_wyfrom tbl-- avg_time_gap ve total_order_per_cust verilerinden gidersekwith tbl as (select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
-		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))monthly_time_gap 
-from [dbo].[combined_table]
-group by cust_id, year(order_date), month(order_date), ord_id, order_date 
-), tbl2 as (select *,	avg(monthly_time_gap) over(partition by cust_id) avg_time_gap_per_cust,	avg(monthly_time_gap) over() avg_time_gap,	count(ord_id) over(partition by cust_id) total_order_per_cust	from tbl), tbl3 as (select *from tbl2), tbl4 as (select *,	avg(total_order_per_cust) over() avg_order_count,	ntile(4) over(order by avg_time_gap_per_cust) ntile_for_avg_time_gapfrom tbl3)select *from tbl4where ntile_for_avg_time_gap=1/*Yukarýda;- müþteri bazýnda ortalama sipariþ zaman aralýðý (avg_time_gap_per_cust),- tüm veri için ortalama sipariþ zaman aralýðý (avg_time_gap),- müþteri bazýnda toplam sipariþ sayýsý (total_order_per_cust),- tüm veri için ortalama sipariþ sayýsý (avg_order_count) ve-- avg_time_gap_per_cust deðerlerine göre ntile (ntile_for_avg_time_gap) deðerlerihesaplanmýþ ve tüm bu veriler deðerlendirilerek müþterilerin categorilere ayýrýlmasý içinaþaðýdaki modelin kullanýlmasýna karar verilmiþtir.1. Sadece tek alýþveriþ yapmýþ olanlar (total_order_per_cust=1 olanlar) 'CHURN',2. avg_time_gap_per_cust <= 4 ve total_order_per_cust > avg_time_gap_per_cust olanlar 'MOST VISITING'3. avg_time_gap_per_cust = 6 ve total_order_per_cust > avg_time_gap_per_cust ile	avg_time_gap_per_cust > 6 olanlar 'LESS VISITING'4. diðerleri ise 'MODERATE VISITING'olarak aþaðýda etiketlenmiþtir.*/with tbl as (select cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
-		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))monthly_time_gap 
-from [dbo].[combined_table]
-group by cust_id, year(order_date), month(order_date), ord_id, order_date 
-), tbl2 as (select *,	avg(monthly_time_gap) over(partition by cust_id) avg_time_gap_per_cust,	count(ord_id) over(partition by cust_id) total_order_per_cust	from tbl)select cust_id,	case		when total_order_per_cust=1 then 'CHURN'		when avg_time_gap_per_cust <= 4 and total_order_per_cust > avg_time_gap_per_cust then 'MOST VISITING'		when (avg_time_gap_per_cust = 6 and total_order_per_cust > avg_time_gap_per_cust) and (avg_time_gap_per_cust > 6) then 'LESS VISITING'		else 'MODERATE VISITING'	end as cust_visit_catgfrom tbl2;/* Month-Wise Retention Rate */
+from combined_table
+), tbl2 as (select *,	avg(monthly_time_gap) over(partition by cust_id) avg_time_gap_per_cust,	count(ord_id) over(partition by cust_id) total_order_per_cust	from tbl)select cust_id,	case		when total_order_per_cust=1 then 'CHURN'		when avg_time_gap_per_cust <= 4 and total_order_per_cust > avg_time_gap_per_cust then 'MOST VISITING'		when (avg_time_gap_per_cust = 6 and total_order_per_cust > avg_time_gap_per_cust) and (avg_time_gap_per_cust > 6) then 'LESS VISITING'		else 'MODERATE VISITING'	end as cust_visit_catgfrom tbl2;/* 2nd Aproach:finding total distinct count of monthly visits by customer ->total_count_mothly_visitsfinding the difference between max an min order dates in combined_table -> month_gap_max_min_orderfinding the rate of total_count_mothly_visits / month_gap_max_min_order -> visit_frequency_per_custcategorize the customers according to the month_gap_max_min_order values.*/with visit_catg as (	select distinct Cust_id, Year_, Month_, 		count(*) over (partition by  Cust_id, Year_, Month_)monthly_visit_num	from visit_log), visit_rate as(	select distinct Cust_id,		sum(monthly_visit_num) over(partition by Cust_id) total_count_mothly_visits	from visit_catg), custom_catg as (select Cust_id, total_count_mothly_visits,	cast(1.0 * total_count_mothly_visits / (select DATEDIFF(month, min(order_date), max(order_date))										from combined_table) as decimal (3,2)) visit_rate_per_custfrom visit_rate)select Cust_id,	CASE		WHEN total_count_mothly_visits=1 THEN 'CHURN'		WHEN visit_rate_per_cust >= 0.20 THEN 'MOST VISITING'		WHEN visit_rate_per_cust < 0.20 AND visit_rate_per_cust >= 0.10 THEN 'MODERATE VISITING'		ELSE 'LESS VISITING'	END cust_catgfrom custom_catgorder by 1;--------------------/* Month-Wise Retention Rate */
 
  /* Find month-by-month customer retention rate since the start of the business. */
 /*There are many different variations in the calculation of Retention Rate. But we will 
@@ -189,26 +169,77 @@ Proceed step by step by creating “views”. You can use the view you got at the en
 the Customer Segmentation section as a source.
 
 1. Find the number of customers retained month-wise. (You can use time gaps)
-2. Calculate the month-wise retention rate. */create view time_gap asselect cust_id, year(order_date)years, month(order_date)months, ord_id, order_date 
+2. Calculate the month-wise retention rate. */create view time_gap asselect cust_id, year(order_date)year_, month(order_date)month_, ord_id, order_date 
 		,datediff(month,order_date,lead(order_date)over(partition by cust_id order by order_date ))date_diff
-from [dbo].[combined_table]
-group by cust_id, year(order_date), month(order_date), ord_id, order_date 
-;select cust_idfrom time_gapwhere years=2009 and months=1 --144INTERSECTselect cust_idfrom time_gapwhere years=2009 and months=2 --104  11/144select cust_idfrom time_gapwhere years=2009 and months=2 --104INTERSECTselect cust_idfrom time_gapwhere years=2009 and months=3  --131  13/104select cust_idfrom time_gapwhere years=2009 and months=3 --131INTERSECTselect cust_idfrom time_gapwhere years=2009 and months=4  --123  13/131--Oran hesaplamawith tbl as(	select distinct cust_id  -- iki ay üstüste gelen müþteri id lerini bulmak için	from time_gap	where years=2009 and months=1 --144	INTERSECT	select distinct cust_id	from time_gap	where years=2009 and months=2)select (1.0 * count(cust_id)/(select count(distinct cust_id) from time_gap where years=2009 and months=1))from tbl-- aylýk müþteri sayýsýselect count(distinct cust_id)from time_gapwhere years=2009 and months=1-- while loop ile döngü içine almaDROP TABLE IF EXISTS RETENTION_RATECREATE TABLE RETENTION_RATE (							YEAR INT,							MONTH INT,							cust_retention_rate DECIMAL(10,2));DECLARE
+from combined_table
+;--finding count of retention customer from January 2011 to February 2011select distinct Cust_id     -- intersect result -- 11 customersfrom visit_logwhere year_=2009 and month_=1  --138 customers in January 2011INTERSECTselect distinct Cust_idfrom visit_logwhere year_=2009 and month_=2  --101 customers in February 2011--calculating the retention rate for January 2011with tbl as(	select distinct Cust_id     -- 11 customers in January 2011 cane back next month(February 2011)	from visit_log	where year_=2009 and month_=1 	INTERSECT	select distinct Cust_id	from visit_log	where year_=2009 and month_=2)select (1.0 * count(cust_id)/(select count(distinct cust_id) from visit_log where Year_=2009 and Month_=1))from tbl-- count of monthly customersselect count(distinct cust_id)from visit_logwhere Year_=2009 and Month_=1-------------------/* 1. Find the number of customers retained month-wise. (You can use time gaps) */
+
+DROP TABLE IF EXISTS NUM_CUST_RETAINED;
+CREATE TABLE NUM_CUST_RETAINED (
+							YEAR INT,
+							MONTH INT,
+							number_customers_retained INT);
+
+DECLARE
+	@year_min int,
+	@year_max int,
+	@month_min int,
+	@month_max int,
+	@number_customers_retained int
+
+select @year_min = min(Year_) from visit_log
+select @year_max = max(Year_) from visit_log
+select @month_min = min(Month_) from visit_log
+select @month_max = max(Month_) from visit_log
+
+while @year_min <= @year_max
+	begin
+		while @month_min <= @month_max
+			begin
+				with tbl as(
+					select distinct cust_id
+					from visit_log
+					where Year_=@year_min and Month_=@month_min
+					intersect
+					select distinct cust_id
+					from visit_log
+					where Year_=@year_min and Month_=@month_min+1
+					)
+				select @number_customers_retained = count(cust_id)
+				from tbl;
+				insert into NUM_CUST_RETAINED values (@year_min, @month_min, @number_customers_retained)
+				--print @year_min
+				--print @month_min
+				--print @number_customers_retained
+				set @month_min += 1
+			end
+
+		PRINT @number_customers_retained
+		set @year_min += 1
+		select @month_min = min(Month_) from visit_log
+	end
+;
+
+--- to display the values in NUM_CUST_RETAINED table
+select *
+from NUM_CUST_RETAINED;
+
+-----------------2. Calculate the month-wise retention rate.DROP TABLE IF EXISTS RETENTION_RATECREATE TABLE RETENTION_RATE (							YEAR INT,							MONTH INT,							cust_retention_rate DECIMAL(10,2));DECLARE
 	@year_min int,
 	@year_max int,
 	@month_min int,
 	@month_max int,
 	@retention_rate decimal(10,2)
 
-select @year_min = min(years) from time_gap
-select @year_max = max(years) from time_gap
-select @month_min = min(months) from time_gap
-select @month_max = max(months) from time_gap
+select @year_min = min(Year_) from visit_log
+select @year_max = max(Year_) from visit_log
+select @month_min = min(Month_) from visit_log
+select @month_max = max(Month_) from visit_log
 
 while @year_min <= @year_max
 	begin
 		while @month_min <= @month_max
-			begin				with tbl as(					select distinct cust_id  -- iki ay üstüste gelen müþteri id lerini bulmak için					from time_gap					where years=@year_min and months=@month_min					INTERSECT					select distinct cust_id					from time_gap					where years=@year_min and months=@month_min+1					)								select @retention_rate = (1.0 * count(cust_id)/(select count(distinct cust_id) from time_gap where years=@year_min and months=@month_min))				from tbl
+			begin				with tbl as(					select distinct cust_id  -- iki ay üstüste gelen müþteri id lerini bulmak için					from visit_log					where Year_=@year_min and Month_=@month_min					INTERSECT					select distinct cust_id					from visit_log					where Year_=@year_min and Month_=@month_min+1					)								select @retention_rate = (1.0 * count(cust_id)/(select count(distinct cust_id) from visit_log where Year_=@year_min and Month_=@month_min))				from tbl
 				insert into RETENTION_RATE values(@year_min, @month_min, @retention_rate)
 				-- print @year_min
 				-- print @month_min
@@ -217,160 +248,7 @@ while @year_min <= @year_max
 			end
 		--print @retention_rate
 		set @year_min += 1
-		select @month_min = min(months) from time_gap
+		select @month_min = min(Month_) from visit_log
 		
-	end;select *
-from RETENTION_RATE
-
---Serdar Hoca'dan gelen DENSE RANK lý kod:
-
-create view tbl_by_time as
-select distinct cust_id, year(order_date) years, month(order_date) months
-	, dense_rank() over(order by year(order_date),month(order_date) ) rank_by_time
-from combined_table
-order by 4
------------
------------
-create table result_table (
-	years int,
-	months int,
-	monthly_rate decimal(10,2)
-)
-----------
----------
-declare	 @rank_min int
-		,@rank_max int
-		,@result decimal(10,2)
-
-select @rank_min = min(rank_by_time) from tbl_by_time
-select @rank_max = max(rank_by_time) from tbl_by_time
-
-while @rank_min < @rank_max
-begin
-	with t1 as(
-	select cust_id
-	from tbl_by_time
-	where	rank_by_time = @rank_min
-	intersect 
-	select cust_id
-	from tbl_by_time
-	where	rank_by_time = @rank_min+1
-	) 
-	select @result = (1.0*count(*)/(select count(*) from tbl_by_time where rank_by_time = @rank_min))
-	from t1	
-insert into result_table 
-values ( (select distinct years from tbl_by_time where rank_by_time=@rank_min)
-		,(select distinct months from tbl_by_time where rank_by_time=@rank_min)
-		,@result
-		)
-set @rank_min += 1
-end
-
-
--------fonksiyon bitti ve tabloyu yazdýrdýk
-select * from result_table
-
-
--- vildan hoca'dan gelen kod:
-
-DECLARE
-	@year_min int,
-	@year_max int,
-	@month_min int,
-	@month_max int,
-	@result decimal(10,2)
-
-select @year_min = min(years) from time_gap
-select @year_max = max(years) from time_gap
-select @month_min = min(months) from time_gap
-select @month_max = max(months) from time_gap
-
-while @year_min <= @year_max
-	begin
-		while @month_min < @month_max
-			begin
-				with tbl as(
-					select distinct cust_id
-					from time_gap
-					where years=@year_min and months=@month_min
-					intersect
-					select distinct cust_id
-					from time_gap
-					where years=@year_min and months=@month_min+1
-					)
-				select @result = (1.0*count(cust_id)/(select count(distinct cust_id) from time_gap where years=@year_min and months=@month_min))
-				from tbl;
-				PRINT @result
-				set @month_min += 1
-			end
-
-		PRINT @result
-		set @year_min += 1
-	end
-
-
--- min year deðerini bulmak için
-DECLARE
-	@year intselect @year = min(years) from time_gapprint @year-- min ve max yýl ve ay deðerlerini yazdýrmak içinDECLARE
-	@year_min int,
-	@year_max int,
-	@month_min int,
-	@month_max intselect @year_min = min(years) from time_gap
-select @year_max = max(years) from time_gap
-select @month_min = min(months) from time_gap
-select @month_max = max(months) from time_gapprint @year_minprint @year_maxprint @month_minprint @month_maxwith tbl as(	select distinct cust_id  -- iki ay üstüste gelen müþteri id lerini bulmak için	from time_gap	where years=2009 and months=1 --144	INTERSECT	select distinct cust_id	from time_gap	where years=2009 and months=2)select (1.0 * count(cust_id)/(select count(distinct cust_id) from time_gap where years=2009 and months=1))from tblCREATE FUNCTION CUST_PER_YEAR_MONTH(@year int@month int)RETURNS /*20091. ay 532. ay 35 --15--15/353. ay 42 --20--20/42...20101. ay 532. ay 35 --15--15/353. ay 42 --20--20/42...*//* 1. Find the number of customers retained month-wise. (You can use time gaps) */
-
-DROP TABLE IF EXISTS ???????????
-CREATE TABLE RETENTION_RATE (
-							YEAR INT,
-							MONTH INT,
-							cust_retention_rate DECIMAL(10,2));
-
-DECLARE
-	@year_min int,
-	@year_max int,
-	@month_min int,
-	@month_max int,
-	@customers_retained int
-
-select @year_min = min(years) from time_gap
-select @year_max = max(years) from time_gap
-select @month_min = min(months) from time_gap
-select @month_max = max(months) from time_gap
-
-while @year_min <= @year_max
-	begin
-		while @month_min <= @month_max
-			begin
-				with tbl as(
-					select distinct cust_id
-					from time_gap
-					where years=@year_min and months=@month_min
-					intersect
-					select distinct cust_id
-					from time_gap
-					where years=@year_min and months=@month_min+1
-					)
-				select @customers_retained = count(cust_id)
-				from tbl;
-				print @year_min
-				print @month_min
-				PRINT @customers_retained
-				set @month_min += 1
-			end
-
-		PRINT @customers_retained
-		set @year_min += 1
-		select @month_min = min(months) from time_gap
-	end
-
-
-/* 2. Calculate the month-wise retention rate. */
-
-
--- Serdar Hoca'dan
-
-select distinct cust_id, year(order_date) years, month(order_date) months
-	, dense_rank() over(order by year(order_date),month(order_date) ) rank_
-from combined_table
-order by rank_
+	end;-- to display the retention rate values in RETENTION_RATE tableselect *
+from RETENTION_RATE;
