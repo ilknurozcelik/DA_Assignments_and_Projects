@@ -1,0 +1,32 @@
+
+PostCodes.csv dosyası 4 sütundan oluşmaktadır.
+
+1. Postcode: 4 haneli posta kodu numarası
+2. PostcodeName: Posta kodunun adı (o bölgenin adı)
+3. ValidFrom: Hangi tarihten itibaren geçerli olduğu
+4. ValidTo: Hangi tarihe kadar geçerli olduğu
+
+Bir posta kodu kapatılabilir.
+Belli bir süre askıya alınabilir.
+Bir posta kodunun adı değişebilir.
+
+Aynı gün kapanıp aynı gün yeniden açılan ve adı değişmemiş posta kodları aynı posta kodu olarak kabul edilir.
+Hangi gün kapanıp hangi gün açılırsa açılsın bir posta kodunun adı değişmişse bu durumda eski posta kodu kapanmış sayılır. Yeni isimli posta kodu ise ilk defa açılmış farklı bir posta kodudur.
+Aynı tarihte bir posta kodunun iki farklı adı olamaz.
+ValidTo sütunu boş olan kayıtlar postakodunun halen geçerli olduğunu anlamına gelir.
+
+Eğer bir posta kodunun adı değişmemişse ve askıya alınma tarihi ile aynı posta kodunun yeniden açılma tarihleri aynı ise bu satırların tek bir satırda toplanması gerekmektedir.
+
+Postcode	PostcodeName	ValidFrom	ValidTo
+1		A		01.01.1999	01.02.1999
+1		A		01.02.1999	
+
+Örneğin yukarıdaki örnekte 1 numaralı Postkodu 1 Ocak 1999 tarihinde açılmış ve 1 Şubat 1999 tarihinde kapatılmış. Fakat aynı gün aynı posta numarası aynı isimle yeniden açılmış ve halen de geçerli bir posta kodu. Dolayısıyla bu iki satır birleştirilecektir ve aşağıdaki şekilde tutulacaktır:
+
+Postcode	PostcodeName	ValidFrom	ValidTo
+1		A		01.01.1999
+
+Eğer bu örnekte 2. satırda yer alan posta kodu aynı gün değil de daha sonra açılmış olsaydı bu durumda ikinci kayıt yeni bir postakodu gibi düşünelecektir. Ve bu iki satır birleştirilmeyecektir.
+
+Bir başka örnek vermek gerekirse Postcode: 1 in adının ilk önce A sonra B olduğunu varsayalım. Bu durumda B isimli posta kodunun açıldığı tarih A isimli posta kodunun kapandığı tarihe eşit de olsa farklı da olsa bu posta kodu yeni bir posta kodu olup bu tip durumlarda da satırlar birleştirilmeyecektir.
+
