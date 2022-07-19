@@ -1,0 +1,2922 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20222.22.0624.2136                               -->
+<workbook locale='en_US' original-version='18.1' source-build='2022.2.0 (20222.22.0624.2136)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelExtractV2.true...ObjectModelExtractV2 />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <_.fcp.AnimationOnByDefault.false...style>
+    <_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule element='animation'>
+      <_.fcp.AnimationOnByDefault.false...format attr='animation-on' value='ao-on' />
+    </_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule>
+  </_.fcp.AnimationOnByDefault.false...style>
+  <datasources>
+    <datasource caption='sales' inline='true' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='sales' name='textscan.0xx96c31timw641e7t6f11b2tuwk'>
+            <connection class='textscan' cleaning='yes' compat='no' csvFile='C:/Users/user/DA_Assignments_and_Projects/02-Projects/DVwTableau_M1_(Sales Analysis of a Website)/sales.csv' dataRefreshTime='' directory='C:/Users/user/DA_Assignments_and_Projects/02-Projects/DVwTableau_M1_(Sales Analysis of a Website)' filename='C:/Users/user/AppData/Local/Temp/TableauTemp/1scs4qm0mgla2g12coymu1i98u9x/sales.csv.xlsx' interpretationMode='8' password='' server='' validate='no' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.0xx96c31timw641e7t6f11b2tuwk' name='currency_rates.csv' table='[currency_rates#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='currency' ordinal='0' />
+            <column datatype='date' name='date' ordinal='1' />
+            <column datatype='real' name='rate' ordinal='2' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+          <relation connection='textscan.0xx96c31timw641e7t6f11b2tuwk' name='sales.csv' table='[sales#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='string' name='buyer_id' ordinal='0' />
+              <column datatype='string' name='buyer_country' ordinal='1' />
+              <column datatype='string' name='seller_id' ordinal='2' />
+              <column datatype='string' name='seller_country' ordinal='3' />
+              <column datatype='string' name='product_code' ordinal='4' />
+              <column datatype='string' name='category' ordinal='5' />
+              <column datatype='string' name='brand' ordinal='6' />
+              <column datatype='string' name='currency' ordinal='7' />
+              <column datatype='real' name='price' ordinal='8' />
+              <column datatype='date' name='date' ordinal='9' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0xx96c31timw641e7t6f11b2tuwk' name='currency_rates.csv' table='[currency_rates#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='string' name='currency' ordinal='0' />
+              <column datatype='date' name='date' ordinal='1' />
+              <column datatype='real' name='rate' ordinal='2' />
+            </columns>
+          </relation>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <cols>
+          <map key='[brand]' value='[sales.csv].[brand]' />
+          <map key='[buyer_country]' value='[sales.csv].[buyer_country]' />
+          <map key='[buyer_id]' value='[sales.csv].[buyer_id]' />
+          <map key='[category]' value='[sales.csv].[category]' />
+          <map key='[currency (currency_rates.csv)]' value='[currency_rates.csv].[currency]' />
+          <map key='[currency]' value='[sales.csv].[currency]' />
+          <map key='[date (currency_rates.csv)]' value='[currency_rates.csv].[date]' />
+          <map key='[date]' value='[sales.csv].[date]' />
+          <map key='[price]' value='[sales.csv].[price]' />
+          <map key='[product_code]' value='[sales.csv].[product_code]' />
+          <map key='[rate]' value='[currency_rates.csv].[rate]' />
+          <map key='[seller_country]' value='[sales.csv].[seller_country]' />
+          <map key='[seller_id]' value='[sales.csv].[seller_id]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[currency_rates.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>buyer_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[buyer_id]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>buyer_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>buyer_country</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[buyer_country]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>buyer_country</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>seller_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[seller_id]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>seller_id</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>seller_country</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[seller_country]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>seller_country</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_code</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_code]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>product_code</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>brand</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[brand]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>brand</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>currency</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[currency]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>currency</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>price</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[price]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>price</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[date]</local-name>
+            <parent-name>[sales.csv]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>currency</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[currency (currency_rates.csv)]</local-name>
+            <parent-name>[currency_rates.csv]</parent-name>
+            <remote-alias>currency</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[date (currency_rates.csv)]</local-name>
+            <parent-name>[currency_rates.csv]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>rate</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[rate]</local-name>
+            <parent-name>[currency_rates.csv]</parent-name>
+            <remote-alias>rate</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[price]/[rate]' />
+      </column>
+      <column caption='Brand-Updated' datatype='string' name='[Calculation_382524550259650562]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IFNULL([brand], &apos;Unknown&apos;)' />
+      </column>
+      <column caption='International Sales' datatype='real' name='[Calculation_382524550306574344]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [buyer_country] != [seller_country]&#13;&#10;THEN [Calculation_382524550244126721] END' />
+      </column>
+      <column caption='Domestic Sales' datatype='real' name='[Calculation_382524550336245772]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [buyer_country] = [seller_country]&#13;&#10;THEN [Calculation_382524550244126721] END' />
+      </column>
+      <_.fcp.ObjectModelTableType.true...column caption='currency_rates.csv' datatype='table' name='[__tableau_internal_object_id__].[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='sales.csv' datatype='table' name='[__tableau_internal_object_id__].[sales.csv_6C20F4F7D5B947F3A522076DE7888393]' role='measure' type='quantitative' />
+      <column caption='Brand' datatype='string' name='[brand]' role='dimension' type='nominal' />
+      <column caption='Buyer Country' datatype='string' name='[buyer_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column caption='Buyer Id' datatype='string' name='[buyer_id]' role='dimension' type='nominal' />
+      <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal' />
+      <column caption='Currency (Currency Rates.Csv)' datatype='string' name='[currency (currency_rates.csv)]' role='dimension' type='nominal' />
+      <column caption='Currency' datatype='string' name='[currency]' role='dimension' type='nominal' />
+      <column caption='Date (Currency Rates.Csv)' datatype='date' name='[date (currency_rates.csv)]' role='dimension' type='ordinal' />
+      <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+      <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+      <column caption='Product Code' datatype='string' name='[product_code]' role='dimension' type='nominal' />
+      <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+      <column caption='Seller Country' datatype='string' name='[seller_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column caption='Seller Id' datatype='string' name='[seller_id]' role='dimension' type='nominal' />
+      <extract _.fcp.ObjectModelExtractV2.true...object-id='' count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='C:/Users/user/DA_Assignments_and_Projects/02-Projects/DVwTableau_M1_(Sales Analysis of a Website)/sales.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='07/17/2022 11:23:06 AM' username='tableau_internal_user'>
+          <_.fcp.ObjectModelEncapsulateLegacy.false...relation name='currency_rates.csv_8589F6AF6DC44F768774916B73F64154' table='[Extract].[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]' type='table' />
+          <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+            <relation name='sales.csv_6C20F4F7D5B947F3A522076DE7888393' table='[Extract].[sales.csv_6C20F4F7D5B947F3A522076DE7888393]' type='table' />
+            <relation name='currency_rates.csv_8589F6AF6DC44F768774916B73F64154' table='[Extract].[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]' type='table' />
+          </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+          <cols>
+            <map key='[brand]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[brand]' />
+            <map key='[buyer_country]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[buyer_country]' />
+            <map key='[buyer_id]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[buyer_id]' />
+            <map key='[category]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[category]' />
+            <map key='[currency (currency_rates.csv)]' value='[currency_rates.csv_8589F6AF6DC44F768774916B73F64154].[currency]' />
+            <map key='[currency]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[currency]' />
+            <map key='[date (currency_rates.csv)]' value='[currency_rates.csv_8589F6AF6DC44F768774916B73F64154].[date]' />
+            <map key='[date]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[date]' />
+            <map key='[price]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[price]' />
+            <map key='[product_code]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[product_code]' />
+            <map key='[rate]' value='[currency_rates.csv_8589F6AF6DC44F768774916B73F64154].[rate]' />
+            <map key='[seller_country]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[seller_country]' />
+            <map key='[seller_id]' value='[sales.csv_6C20F4F7D5B947F3A522076DE7888393].[seller_id]' />
+          </cols>
+          <refresh>
+            <refresh-event add-from-file-path='sales' increment-value='%null%' refresh-type='create' rows-inserted='237891' timestamp-start='2022-07-17 11:23:03.230' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>buyer_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[buyer_id]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>buyer_id</remote-alias>
+              <ordinal>0</ordinal>
+              <family>sales.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>194548</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>buyer_country</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[buyer_country]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>buyer_country</remote-alias>
+              <ordinal>1</ordinal>
+              <family>sales.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>9</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>seller_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[seller_id]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>seller_id</remote-alias>
+              <ordinal>2</ordinal>
+              <family>sales.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>71861</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>seller_country</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[seller_country]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>seller_country</remote-alias>
+              <ordinal>3</ordinal>
+              <family>sales.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>20</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_code</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_code]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>product_code</remote-alias>
+              <ordinal>4</ordinal>
+              <family>sales.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>226892</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>category</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[category]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>category</remote-alias>
+              <ordinal>5</ordinal>
+              <family>sales.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>43</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>brand</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[brand]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>brand</remote-alias>
+              <ordinal>6</ordinal>
+              <family>sales.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>1519</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>currency</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[currency]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>currency</remote-alias>
+              <ordinal>7</ordinal>
+              <family>sales.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>14</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>price</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[price]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>price</remote-alias>
+              <ordinal>8</ordinal>
+              <family>sales.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>25770</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>date</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[date]</local-name>
+              <parent-name>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</parent-name>
+              <remote-alias>date</remote-alias>
+              <ordinal>9</ordinal>
+              <family>sales.csv</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>7</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[sales.csv_6C20F4F7D5B947F3A522076DE7888393]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>currency</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[currency (currency_rates.csv)]</local-name>
+              <parent-name>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</parent-name>
+              <remote-alias>currency</remote-alias>
+              <ordinal>10</ordinal>
+              <family>currency_rates.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>22</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>date</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[date (currency_rates.csv)]</local-name>
+              <parent-name>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</parent-name>
+              <remote-alias>date</remote-alias>
+              <ordinal>11</ordinal>
+              <family>currency_rates.csv</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>rate</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[rate]</local-name>
+              <parent-name>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</parent-name>
+              <remote-alias>rate</remote-alias>
+              <ordinal>12</ordinal>
+              <family>currency_rates.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>199</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Turkey&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+      <field-sort-info field-sort-order-type='custom-order'>
+        <field-sort-custom-order field='buyer_id' />
+        <field-sort-custom-order field='buyer_country' />
+        <field-sort-custom-order field='seller_id' />
+        <field-sort-custom-order field='seller_country' />
+        <field-sort-custom-order field='Calculation_382524550298685445' />
+        <field-sort-custom-order field='product_code' />
+        <field-sort-custom-order field='category' />
+        <field-sort-custom-order field='brand' />
+        <field-sort-custom-order field='currency' />
+        <field-sort-custom-order field='price' />
+        <field-sort-custom-order field='date' />
+        <field-sort-custom-order field='Calculation_382524550259650562' />
+      </field-sort-info>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='currency_rates.csv' id='currency_rates.csv_8589F6AF6DC44F768774916B73F64154'>
+            <properties context=''>
+              <relation connection='textscan.0xx96c31timw641e7t6f11b2tuwk' name='currency_rates.csv' table='[currency_rates#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='currency' ordinal='0' />
+                  <column datatype='date' name='date' ordinal='1' />
+                  <column datatype='real' name='rate' ordinal='2' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='currency_rates.csv_8589F6AF6DC44F768774916B73F64154' table='[Extract].[currency_rates.csv_8589F6AF6DC44F768774916B73F64154]' type='table' />
+            </properties>
+          </object>
+          <object caption='sales.csv' id='sales.csv_6C20F4F7D5B947F3A522076DE7888393'>
+            <properties context=''>
+              <relation connection='textscan.0xx96c31timw641e7t6f11b2tuwk' name='sales.csv' table='[sales#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='buyer_id' ordinal='0' />
+                  <column datatype='string' name='buyer_country' ordinal='1' />
+                  <column datatype='string' name='seller_id' ordinal='2' />
+                  <column datatype='string' name='seller_country' ordinal='3' />
+                  <column datatype='string' name='product_code' ordinal='4' />
+                  <column datatype='string' name='category' ordinal='5' />
+                  <column datatype='string' name='brand' ordinal='6' />
+                  <column datatype='string' name='currency' ordinal='7' />
+                  <column datatype='real' name='price' ordinal='8' />
+                  <column datatype='date' name='date' ordinal='9' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='sales.csv_6C20F4F7D5B947F3A522076DE7888393' table='[Extract].[sales.csv_6C20F4F7D5B947F3A522076DE7888393]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[currency]' />
+                <expression op='[currency (currency_rates.csv)]' />
+              </expression>
+              <expression op='='>
+                <expression op='[date]' />
+                <expression op='[date (currency_rates.csv)]' />
+              </expression>
+            </expression>
+            <first-end-point object-id='sales.csv_6C20F4F7D5B947F3A522076DE7888393' />
+            <second-end-point object-id='currency_rates.csv_8589F6AF6DC44F768774916B73F64154' />
+          </relationship>
+        </relationships>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='1-Number of Records'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontalignment='1' fontname='Calibri' fontsize='20'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Buyer Id' datatype='string' name='[buyer_id]' role='dimension' type='nominal' />
+            <column-instance column='[buyer_id]' derivation='Count' name='[cnt:buyer_id:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='178' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <text column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[cnt:buyer_id:qk]' />
+              <lod column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[cnt:buyer_id:qk]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run bold='true' fontname='Calibri' fontsize='20'>&lt;</run>
+                <run bold='true' fontname='Calibri' fontsize='20'>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[cnt:buyer_id:qk]</run>
+                <run bold='true' fontname='Calibri' fontsize='20'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='center' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='size' value='1' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{272320B6-76E4-48A3-874C-8FF47A7E1666}' />
+    </worksheet>
+    <worksheet name='10-Percentage of US buyers whitin US sellers'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Calibri' fontsize='20'>Percentage of transactions purchased by US buyers  whitin US sellers&apos; transactions</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[price]/[rate]' />
+            </column>
+            <column caption='Buyer Country' datatype='string' name='[buyer_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[buyer_country]' derivation='None' name='[none:buyer_country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[seller_country]' derivation='None' name='[none:seller_country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_382524550244126721]' derivation='Sum' name='[pcto:sum:Calculation_382524550244126721:qk:1]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Field' type='PctTotal'>
+                <order field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' />
+                <order field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk]' />
+              </table-calc>
+            </column-instance>
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+            <column caption='Seller Country' datatype='string' name='[seller_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+          </datasource-dependencies>
+          <manual-sort column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;US&quot;</bucket>
+              <bucket>&quot;RoW&quot;</bucket>
+              <bucket>&quot;GB&quot;</bucket>
+              <bucket>&quot;CA&quot;</bucket>
+              <bucket>&quot;AU&quot;</bucket>
+              <bucket>&quot;FR&quot;</bucket>
+              <bucket>&quot;DE&quot;</bucket>
+              <bucket>&quot;IT&quot;</bucket>
+              <bucket>&quot;IE&quot;</bucket>
+              <bucket>%all%</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk]'>
+            <groupfilter function='member' level='[none:seller_country:nk]' member='&quot;US&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='1050' />
+                <format attr='maxwidth' value='1050' />
+                <format attr='minheight' value='180' />
+                <format attr='maxheight' value='180' />
+                <format attr='aspect' value='0' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk] / [federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk])</rows>
+        <cols>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[pcto:sum:Calculation_382524550244126721:qk:1]</cols>
+      </table>
+      <simple-id uuid='{F44569B0-D93D-4E70-B7B9-B2756BD85414}' />
+    </worksheet>
+    <worksheet name='2-Total number of sellers'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontalignment='1' fontname='Calibri' fontsize='20'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column-instance column='[seller_id]' derivation='CountD' name='[ctd:seller_id:qk]' pivot='key' type='quantitative' />
+            <column caption='Seller Id' datatype='string' name='[seller_id]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='202' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <text column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[ctd:seller_id:qk]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run bold='true' fontname='Calibri' fontsize='20'>&lt;</run>
+                <run bold='true' fontname='Calibri' fontsize='20'>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[ctd:seller_id:qk]</run>
+                <run bold='true' fontname='Calibri' fontsize='20'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='center' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{CA9908CD-C7EF-4A3F-9BBB-2CFFF1F093F7}' />
+    </worksheet>
+    <worksheet name='3-Total Sales in EUR'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontalignment='1' fontname='Calibri' fontsize='20'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[price]/[rate]' />
+            </column>
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+            <column-instance column='[Calculation_382524550244126721]' derivation='Sum' name='[sum:Calculation_382524550244126721:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <text column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[sum:Calculation_382524550244126721:qk]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run bold='true' fontcolor='#f5f5f5' fontname='Calibri' fontsize='20'>&lt;</run>
+                <run bold='true' fontcolor='#f5f5f5' fontname='Calibri' fontsize='20'>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[sum:Calculation_382524550244126721:qk]</run>
+                <run bold='true' fontcolor='#f5f5f5' fontname='Calibri' fontsize='20'>&gt; EUR</run>
+                <run bold='true' fontcolor='#f5f5f5' fontname='Calibri' fontsize='20'>Æ&#10;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='center' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{D57FBF4A-007B-49B4-9EE4-C4DCFC6FBCD3}' />
+    </worksheet>
+    <worksheet name='4-Brand Purchases'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontalignment='1' fontname='Calibri' fontsize='20'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[price]/[rate]' />
+            </column>
+            <column caption='Brand-Updated' datatype='string' name='[Calculation_382524550259650562]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IFNULL([brand], &apos;Unknown&apos;)' />
+            </column>
+            <column caption='Brand' datatype='string' name='[brand]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_382524550259650562]' derivation='None' name='[none:Calculation_382524550259650562:nk]' pivot='key' type='nominal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+            <column-instance column='[Calculation_382524550244126721]' derivation='Sum' name='[sum:Calculation_382524550244126721:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:Calculation_382524550259650562:nk]'>
+            <groupfilter expression='ISNULL([Calculation_382524550259650562]) OR (NOT(CONTAINS(LOWER([Calculation_382524550259650562]), LOWER(&apos;Unknown&apos;))))' function='filter' user:ui-enumeration='exclusive' user:ui-pattern-include-all-when-empty='true' user:ui-pattern_text='Unknown' user:ui-pattern_type='contains'>
+              <groupfilter function='except' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+                <groupfilter function='level-members' level='[none:Calculation_382524550259650562:nk]' />
+                <groupfilter function='member' level='[none:Calculation_382524550259650562:nk]' member='%null%' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:Calculation_382524550259650562:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Nike&quot;</bucket>
+              <bucket>&quot;Adidas&quot;</bucket>
+              <bucket>&quot;American Vintage&quot;</bucket>
+              <bucket>&quot;Brandy Melville&quot;</bucket>
+              <bucket>&quot;Dr. Martens&quot;</bucket>
+              <bucket>&quot;Topshop&quot;</bucket>
+              <bucket>&quot;Supreme&quot;</bucket>
+              <bucket>&quot;Gucci&quot;</bucket>
+              <bucket>&quot;Apple&quot;</bucket>
+              <bucket>&quot;Zara&quot;</bucket>
+              <bucket>&quot;Louis Vuitton&quot;</bucket>
+              <bucket>&quot;Stone Island&quot;</bucket>
+              <bucket>&quot;PrettyLittle Thing&quot;</bucket>
+              <bucket>&quot;Vans&quot;</bucket>
+              <bucket>&quot;Levi&apos;s&quot;</bucket>
+              <bucket>&quot;Yeezy&quot;</bucket>
+              <bucket>&quot;Urban Outfitters&quot;</bucket>
+              <bucket>&quot;Oh Polly&quot;</bucket>
+              <bucket>&quot;Tommy Hilfiger&quot;</bucket>
+              <bucket>&quot;Jordan&quot;</bucket>
+              <bucket>&quot;Champion&quot;</bucket>
+              <bucket>&quot;ASOS&quot;</bucket>
+              <bucket>&quot;Converse&quot;</bucket>
+              <bucket>&quot;Balenciaga&quot;</bucket>
+              <bucket>&quot;Polo Ralph Lauren&quot;</bucket>
+              <bucket>&quot;Burberry&quot;</bucket>
+              <bucket>&quot;The North Face&quot;</bucket>
+              <bucket>&quot;Ralph Lauren&quot;</bucket>
+              <bucket>&quot;Adidas Originals&quot;</bucket>
+              <bucket>&quot;Missguided&quot;</bucket>
+              <bucket>&quot;Off-White&quot;</bucket>
+              <bucket>&quot;Prada&quot;</bucket>
+              <bucket>&quot;Gymshark&quot;</bucket>
+              <bucket>&quot;Palace&quot;</bucket>
+              <bucket>&quot;Guess&quot;</bucket>
+              <bucket>&quot;Dsquared2&quot;</bucket>
+              <bucket>&quot;Fila&quot;</bucket>
+              <bucket>&quot;River Island&quot;</bucket>
+              <bucket>&quot;BAPE&quot;</bucket>
+              <bucket>&quot;Victoria&apos;s Secret&quot;</bucket>
+              <bucket>&quot;New Look&quot;</bucket>
+              <bucket>&quot;Dickies&quot;</bucket>
+              <bucket>&quot;Reebok&quot;</bucket>
+              <bucket>&quot;Alexander McQueen&quot;</bucket>
+              <bucket>&quot;Moncler&quot;</bucket>
+              <bucket>&quot;Calvin Klein&quot;</bucket>
+              <bucket>&quot;Stüssy&quot;</bucket>
+              <bucket>&quot;House of CB&quot;</bucket>
+              <bucket>&quot;Chanel&quot;</bucket>
+              <bucket>&quot;Comme des Garçons&quot;</bucket>
+              <bucket>&quot;Golf Wang&quot;</bucket>
+              <bucket>&quot;Forever 21&quot;</bucket>
+              <bucket>&quot;Christian Louboutin&quot;</bucket>
+              <bucket>&quot;H&amp;M&quot;</bucket>
+              <bucket>&quot;Valentino&quot;</bucket>
+              <bucket>&quot;Dior&quot;</bucket>
+              <bucket>&quot;Kenzo&quot;</bucket>
+              <bucket>&quot;Lululemon&quot;</bucket>
+              <bucket>&quot;Fendi&quot;</bucket>
+              <bucket>&quot;Vivienne Westwood&quot;</bucket>
+              <bucket>&quot;Puma&quot;</bucket>
+              <bucket>&quot;Versace&quot;</bucket>
+              <bucket>&quot;Yves Saint Laurent&quot;</bucket>
+              <bucket>&quot;Boohoo&quot;</bucket>
+              <bucket>&quot;UNIF&quot;</bucket>
+              <bucket>&quot;Carhartt&quot;</bucket>
+              <bucket>&quot;Michael Kors&quot;</bucket>
+              <bucket>&quot;Harley Davidson&quot;</bucket>
+              <bucket>&quot;Moschino&quot;</bucket>
+              <bucket>&quot;Patagonia&quot;</bucket>
+              <bucket>&quot;American Apparel&quot;</bucket>
+              <bucket>&quot;Primark&quot;</bucket>
+              <bucket>&quot;Fred Perry&quot;</bucket>
+              <bucket>&quot;CP Company&quot;</bucket>
+              <bucket>&quot;Lacoste&quot;</bucket>
+              <bucket>&quot;PANDORA&quot;</bucket>
+              <bucket>&quot;Reformation&quot;</bucket>
+              <bucket>&quot;Dolls Kill&quot;</bucket>
+              <bucket>&quot;Givenchy&quot;</bucket>
+              <bucket>&quot;Ray-Ban&quot;</bucket>
+              <bucket>&quot;Christian Dior&quot;</bucket>
+              <bucket>&quot;Motel&quot;</bucket>
+              <bucket>&quot;Kappa&quot;</bucket>
+              <bucket>&quot;Nintendo&quot;</bucket>
+              <bucket>&quot;Thrasher&quot;</bucket>
+              <bucket>&quot;Fjällräven&quot;</bucket>
+              <bucket>&quot;Disney&quot;</bucket>
+              <bucket>&quot;American Eagle Outfitters&quot;</bucket>
+              <bucket>&quot;Free People&quot;</bucket>
+              <bucket>&quot;Lazy Oaf&quot;</bucket>
+              <bucket>&quot;Playboy&quot;</bucket>
+              <bucket>&quot;FTP&quot;</bucket>
+              <bucket>&quot;Canon&quot;</bucket>
+              <bucket>&quot;Lee&quot;</bucket>
+              <bucket>&quot;Ted Baker&quot;</bucket>
+              <bucket>&quot;PacSun&quot;</bucket>
+              <bucket>&quot;AllSaints&quot;</bucket>
+              <bucket>&quot;Timberland&quot;</bucket>
+              <bucket>&quot;Beats by Dre&quot;</bucket>
+              <bucket>&quot;Umbro&quot;</bucket>
+              <bucket>&quot;Juicy Couture&quot;</bucket>
+              <bucket>&quot;Canada Goose&quot;</bucket>
+              <bucket>&quot;Carhartt WIP&quot;</bucket>
+              <bucket>&quot;Unbranded&quot;</bucket>
+              <bucket>&quot;Vlone&quot;</bucket>
+              <bucket>&quot;MAC&quot;</bucket>
+              <bucket>&quot;True Religion&quot;</bucket>
+              <bucket>&quot;Réalisation Par&quot;</bucket>
+              <bucket>&quot;New Balance&quot;</bucket>
+              <bucket>&quot;Acne Studios&quot;</bucket>
+              <bucket>&quot;Polo Sport&quot;</bucket>
+              <bucket>&quot;Nasty Gal&quot;</bucket>
+              <bucket>&quot;Gildan&quot;</bucket>
+              <bucket>&quot;Hugo Boss&quot;</bucket>
+              <bucket>&quot;Armani&quot;</bucket>
+              <bucket>&quot;Lucy and Yak&quot;</bucket>
+              <bucket>&quot;Elsie and Fred&quot;</bucket>
+              <bucket>&quot;Wrangler&quot;</bucket>
+              <bucket>&quot;Places + Faces&quot;</bucket>
+              <bucket>&quot;Billionaire Boys Club&quot;</bucket>
+              <bucket>&quot;Gap&quot;</bucket>
+              <bucket>&quot;Hollister Co.&quot;</bucket>
+              <bucket>&quot;I.AM.GIA&quot;</bucket>
+              <bucket>&quot;Birkenstock&quot;</bucket>
+              <bucket>&quot;&amp; Other Stories&quot;</bucket>
+              <bucket>&quot;Fashion Nova&quot;</bucket>
+              <bucket>&quot;Coach&quot;</bucket>
+              <bucket>&quot;Dropdead&quot;</bucket>
+              <bucket>&quot;Jeffree Star&quot;</bucket>
+              <bucket>&quot;Napapijri&quot;</bucket>
+              <bucket>&quot;In The Style&quot;</bucket>
+              <bucket>&quot;Sony&quot;</bucket>
+              <bucket>&quot;Trapstar&quot;</bucket>
+              <bucket>&quot;Nautica&quot;</bucket>
+              <bucket>&quot;Dolce &amp; Gabbana&quot;</bucket>
+              <bucket>&quot;Tiffany &amp; Co.&quot;</bucket>
+              <bucket>&quot;Jack Wills&quot;</bucket>
+              <bucket>&quot;Giuseppe Zanotti&quot;</bucket>
+              <bucket>&quot;Olympus&quot;</bucket>
+              <bucket>&quot;Hot Topic&quot;</bucket>
+              <bucket>&quot;Miss Selfridge&quot;</bucket>
+              <bucket>&quot;Buffalo London&quot;</bucket>
+              <bucket>&quot;I Saw It First&quot;</bucket>
+              <bucket>&quot;Skechers&quot;</bucket>
+              <bucket>&quot;Steve Madden&quot;</bucket>
+              <bucket>&quot;Anastasia Beverly Hills&quot;</bucket>
+              <bucket>&quot;Bershka&quot;</bucket>
+              <bucket>&quot;Travis Scott&quot;</bucket>
+              <bucket>&quot;Kate Spade New York&quot;</bucket>
+              <bucket>&quot;Topman&quot;</bucket>
+              <bucket>&quot;BDG&quot;</bucket>
+              <bucket>&quot;Ellesse&quot;</bucket>
+              <bucket>&quot;HUF&quot;</bucket>
+              <bucket>&quot;DKNY&quot;</bucket>
+              <bucket>&quot;Emporio Armani&quot;</bucket>
+              <bucket>&quot;Rat &amp; Boa&quot;</bucket>
+              <bucket>&quot;Pull&amp;Bear&quot;</bucket>
+              <bucket>&quot;Anti Social Social Club&quot;</bucket>
+              <bucket>&quot;Next&quot;</bucket>
+              <bucket>&quot;Raf Simons&quot;</bucket>
+              <bucket>&quot;Céline&quot;</bucket>
+              <bucket>&quot;Marc Jacobs&quot;</bucket>
+              <bucket>&quot;Fenty Beauty&quot;</bucket>
+              <bucket>&quot;Maharishi&quot;</bucket>
+              <bucket>&quot;ARE YOU AM I&quot;</bucket>
+              <bucket>&quot;Charlotte Tilbury&quot;</bucket>
+              <bucket>&quot;For Love &amp; Lemons&quot;</bucket>
+              <bucket>&quot;Starter&quot;</bucket>
+              <bucket>&quot;SHEIN&quot;</bucket>
+              <bucket>&quot;Under Armour&quot;</bucket>
+              <bucket>&quot;UNIQLO&quot;</bucket>
+              <bucket>&quot;Killstar&quot;</bucket>
+              <bucket>&quot;Fujifilm&quot;</bucket>
+              <bucket>&quot;Monki&quot;</bucket>
+              <bucket>&quot;Hunter&quot;</bucket>
+              <bucket>&quot;Demonia&quot;</bucket>
+              <bucket>&quot;Mulberry&quot;</bucket>
+              <bucket>&quot;Palm Angels&quot;</bucket>
+              <bucket>&quot;Fucking Awesome&quot;</bucket>
+              <bucket>&quot;Patta&quot;</bucket>
+              <bucket>&quot;Huda Beauty&quot;</bucket>
+              <bucket>&quot;Obey&quot;</bucket>
+              <bucket>&quot;Morphe&quot;</bucket>
+              <bucket>&quot;Fruit of the Loom&quot;</bucket>
+              <bucket>&quot;Glossier&quot;</bucket>
+              <bucket>&quot;Polaroid&quot;</bucket>
+              <bucket>&quot;Too Faced&quot;</bucket>
+              <bucket>&quot;Quiz&quot;</bucket>
+              <bucket>&quot;Missoni&quot;</bucket>
+              <bucket>&quot;ASICS&quot;</bucket>
+              <bucket>&quot;Gosha Rubchinskiy&quot;</bucket>
+              <bucket>&quot;Urban Decay&quot;</bucket>
+              <bucket>&quot;Columbia Sportswear&quot;</bucket>
+              <bucket>&quot;Public Desire&quot;</bucket>
+              <bucket>&quot;Alexander Wang&quot;</bucket>
+              <bucket>&quot;Madewell&quot;</bucket>
+              <bucket>&quot;Benefit&quot;</bucket>
+              <bucket>&quot;Jeffrey Campbell&quot;</bucket>
+              <bucket>&quot;UGG&quot;</bucket>
+              <bucket>&quot;Jean-Paul Gaultier&quot;</bucket>
+              <bucket>&quot;Hanes&quot;</bucket>
+              <bucket>&quot;Marks &amp; Spencer&quot;</bucket>
+              <bucket>&quot;Liz Claiborne&quot;</bucket>
+              <bucket>&quot;Berghaus&quot;</bucket>
+              <bucket>&quot;ghd&quot;</bucket>
+              <bucket>&quot;Vetements&quot;</bucket>
+              <bucket>&quot;Diesel&quot;</bucket>
+              <bucket>&quot;Maniere De Voir&quot;</bucket>
+              <bucket>&quot;Jaded London&quot;</bucket>
+              <bucket>&quot;liquid blue&quot;</bucket>
+              <bucket>&quot;Nikon&quot;</bucket>
+              <bucket>&quot;Hera London&quot;</bucket>
+              <bucket>&quot;Revenge&quot;</bucket>
+              <bucket>&quot;Old Navy&quot;</bucket>
+              <bucket>&quot;O-MIGHTY&quot;</bucket>
+              <bucket>&quot;Saint Laurent Paris&quot;</bucket>
+              <bucket>&quot;Pretty Green&quot;</bucket>
+              <bucket>&quot;Balmain&quot;</bucket>
+              <bucket>&quot;Superga&quot;</bucket>
+              <bucket>&quot;Longchamp&quot;</bucket>
+              <bucket>&quot;COS&quot;</bucket>
+              <bucket>&quot;Maison Margiela&quot;</bucket>
+              <bucket>&quot;The Ragged Priest&quot;</bucket>
+              <bucket>&quot;Santa Cruz&quot;</bucket>
+              <bucket>&quot;Fear of God&quot;</bucket>
+              <bucket>&quot;Mango&quot;</bucket>
+              <bucket>&quot;Whistles&quot;</bucket>
+              <bucket>&quot;NARS&quot;</bucket>
+              <bucket>&quot;Hard Rock Cafe&quot;</bucket>
+              <bucket>&quot;Aquascutum&quot;</bucket>
+              <bucket>&quot;TOM FORD&quot;</bucket>
+              <bucket>&quot;Tory Burch&quot;</bucket>
+              <bucket>&quot;Lanvin&quot;</bucket>
+              <bucket>&quot;RIPNDIP&quot;</bucket>
+              <bucket>&quot;Marlboro&quot;</bucket>
+              <bucket>&quot;Lipsy&quot;</bucket>
+              <bucket>&quot;Reiss&quot;</bucket>
+              <bucket>&quot;Samsung&quot;</bucket>
+              <bucket>&quot;L.L.Bean&quot;</bucket>
+              <bucket>&quot;The Couture Club&quot;</bucket>
+              <bucket>&quot;Clarks&quot;</bucket>
+              <bucket>&quot;Kangol&quot;</bucket>
+              <bucket>&quot;Barbour&quot;</bucket>
+              <bucket>&quot;Abercrombie &amp; Fitch&quot;</bucket>
+              <bucket>&quot;Cav Empt&quot;</bucket>
+              <bucket>&quot;Kickers&quot;</bucket>
+              <bucket>&quot;Moda Minx&quot;</bucket>
+              <bucket>&quot;Estée Lauder&quot;</bucket>
+              <bucket>&quot;Agent Provocateur&quot;</bucket>
+              <bucket>&quot;Kurt Geiger&quot;</bucket>
+              <bucket>&quot;Eastpak&quot;</bucket>
+              <bucket>&quot;Club L&quot;</bucket>
+              <bucket>&quot;Looney Tunes&quot;</bucket>
+              <bucket>&quot;Tripp NYC&quot;</bucket>
+              <bucket>&quot;Herschel Supply Co.&quot;</bucket>
+              <bucket>&quot;Lavish Alice&quot;</bucket>
+              <bucket>&quot;Superdry&quot;</bucket>
+              <bucket>&quot;MCM&quot;</bucket>
+              <bucket>&quot;Evisu&quot;</bucket>
+              <bucket>&quot;Alyx&quot;</bucket>
+              <bucket>&quot;Octobers Very Own&quot;</bucket>
+              <bucket>&quot;Chi Chi London&quot;</bucket>
+              <bucket>&quot;LF&quot;</bucket>
+              <bucket>&quot;French Connection&quot;</bucket>
+              <bucket>&quot;NASCAR&quot;</bucket>
+              <bucket>&quot;MissPap&quot;</bucket>
+              <bucket>&quot;Rick Owens&quot;</bucket>
+              <bucket>&quot;NICCE&quot;</bucket>
+              <bucket>&quot;Helmut Lang&quot;</bucket>
+              <bucket>&quot;Target&quot;</bucket>
+              <bucket>&quot;Gunne Sax&quot;</bucket>
+              <bucket>&quot;Kaws&quot;</bucket>
+              <bucket>&quot;Paul Smith&quot;</bucket>
+              <bucket>&quot;Jimmy Choo&quot;</bucket>
+              <bucket>&quot;Chaps&quot;</bucket>
+              <bucket>&quot;Minolta&quot;</bucket>
+              <bucket>&quot;Polar Skate Co&quot;</bucket>
+              <bucket>&quot;Donnay&quot;</bucket>
+              <bucket>&quot;Stella McCartney&quot;</bucket>
+              <bucket>&quot;Sanrio&quot;</bucket>
+              <bucket>&quot;YRU&quot;</bucket>
+              <bucket>&quot;Sephora&quot;</bucket>
+              <bucket>&quot;Kylie Cosmetics&quot;</bucket>
+              <bucket>&quot;The Dolls House&quot;</bucket>
+              <bucket>&quot;Acacia Swimwear&quot;</bucket>
+              <bucket>&quot;Paul &amp; Shark&quot;</bucket>
+              <bucket>&quot;Zumiez&quot;</bucket>
+              <bucket>&quot;Ann Summers&quot;</bucket>
+              <bucket>&quot;Bebe&quot;</bucket>
+              <bucket>&quot;Express&quot;</bucket>
+              <bucket>&quot;Office&quot;</bucket>
+              <bucket>&quot;Billabong&quot;</bucket>
+              <bucket>&quot;Mitchell &amp; Ness&quot;</bucket>
+              <bucket>&quot;Dorothy Perkins&quot;</bucket>
+              <bucket>&quot;Karen Millen&quot;</bucket>
+              <bucket>&quot;ZAFUL&quot;</bucket>
+              <bucket>&quot;Coogi&quot;</bucket>
+              <bucket>&quot;Hermes&quot;</bucket>
+              <bucket>&quot;TAG Heuer&quot;</bucket>
+              <bucket>&quot;Colourpop&quot;</bucket>
+              <bucket>&quot;Russell Athletic&quot;</bucket>
+              <bucket>&quot;Odd Future&quot;</bucket>
+              <bucket>&quot;Warehouse&quot;</bucket>
+              <bucket>&quot;Kat Von D&quot;</bucket>
+              <bucket>&quot;BOSS&quot;</bucket>
+              <bucket>&quot;Lyle &amp; Scott&quot;</bucket>
+              <bucket>&quot;Aspinal of London&quot;</bucket>
+              <bucket>&quot;Y-3&quot;</bucket>
+              <bucket>&quot;Anthropologie&quot;</bucket>
+              <bucket>&quot;Pentax&quot;</bucket>
+              <bucket>&quot;Betsey Johnson&quot;</bucket>
+              <bucket>&quot;EGO&quot;</bucket>
+              <bucket>&quot;Eddie Bauer&quot;</bucket>
+              <bucket>&quot;United Colors of Benetton&quot;</bucket>
+              <bucket>&quot;Goyard&quot;</bucket>
+              <bucket>&quot;Cath Kidston&quot;</bucket>
+              <bucket>&quot;Loewe&quot;</bucket>
+              <bucket>&quot;Pleasures&quot;</bucket>
+              <bucket>&quot;BlackMilk&quot;</bucket>
+              <bucket>&quot;Missy Empire&quot;</bucket>
+              <bucket>&quot;Rouje&quot;</bucket>
+              <bucket>&quot;Von Dutch&quot;</bucket>
+              <bucket>&quot;Salvatore Ferragamo&quot;</bucket>
+              <bucket>&quot;Helly Hansen&quot;</bucket>
+              <bucket>&quot;Isabel Marant&quot;</bucket>
+              <bucket>&quot;Bath &amp; Body Works&quot;</bucket>
+              <bucket>&quot;Lush Ltd.&quot;</bucket>
+              <bucket>&quot;Pink Boutique&quot;</bucket>
+              <bucket>&quot;Common Projects&quot;</bucket>
+              <bucket>&quot;Sergio Tacchini&quot;</bucket>
+              <bucket>&quot;Tarte&quot;</bucket>
+              <bucket>&quot;Bobbi Brown&quot;</bucket>
+              <bucket>&quot;A-COLD-WALL&quot;</bucket>
+              <bucket>&quot;Opening Ceremony&quot;</bucket>
+              <bucket>&quot;Stradivarius&quot;</bucket>
+              <bucket>&quot;Dune&quot;</bucket>
+              <bucket>&quot;Coast&quot;</bucket>
+              <bucket>&quot;Neil Barrett&quot;</bucket>
+              <bucket>&quot;EA7&quot;</bucket>
+              <bucket>&quot;Alpha Industries&quot;</bucket>
+              <bucket>&quot;Jerzees&quot;</bucket>
+              <bucket>&quot;Faded Glory&quot;</bucket>
+              <bucket>&quot;T.U.K.&quot;</bucket>
+              <bucket>&quot;Miu Miu&quot;</bucket>
+              <bucket>&quot;Weekday&quot;</bucket>
+              <bucket>&quot;Jo Malone&quot;</bucket>
+              <bucket>&quot;J.Crew&quot;</bucket>
+              <bucket>&quot;Veja&quot;</bucket>
+              <bucket>&quot;Banana Republic&quot;</bucket>
+              <bucket>&quot;Morgan De Toi&quot;</bucket>
+              <bucket>&quot;Noah&quot;</bucket>
+              <bucket>&quot;Dead Bored Club&quot;</bucket>
+              <bucket>&quot;Kith&quot;</bucket>
+              <bucket>&quot;BONGO&quot;</bucket>
+              <bucket>&quot;Jacquemus&quot;</bucket>
+              <bucket>&quot;Jansport&quot;</bucket>
+              <bucket>&quot;Slazenger&quot;</bucket>
+              <bucket>&quot;Gym King&quot;</bucket>
+              <bucket>&quot;Tiger Mist&quot;</bucket>
+              <bucket>&quot;Charlotte Russe&quot;</bucket>
+              <bucket>&quot;Vagabond&quot;</bucket>
+              <bucket>&quot;Pendleton&quot;</bucket>
+              <bucket>&quot;Clinique&quot;</bucket>
+              <bucket>&quot;Chloé&quot;</bucket>
+              <bucket>&quot;Swarovski&quot;</bucket>
+              <bucket>&quot;The Body Shop&quot;</bucket>
+              <bucket>&quot;JW Anderson&quot;</bucket>
+              <bucket>&quot;Ed Hardy&quot;</bucket>
+              <bucket>&quot;BaByliss&quot;</bucket>
+              <bucket>&quot;Sandro&quot;</bucket>
+              <bucket>&quot;Yardsale Skateboards&quot;</bucket>
+              <bucket>&quot;Paloma Wool&quot;</bucket>
+              <bucket>&quot;Candie&apos;s&quot;</bucket>
+              <bucket>&quot;Ariana Grande&quot;</bucket>
+              <bucket>&quot;Everlane&quot;</bucket>
+              <bucket>&quot;Oasis&quot;</bucket>
+              <bucket>&quot;Represent&quot;</bucket>
+              <bucket>&quot;Marvel&quot;</bucket>
+              <bucket>&quot;Yashica&quot;</bucket>
+              <bucket>&quot;The Hundreds&quot;</bucket>
+              <bucket>&quot;Giorgio Armani&quot;</bucket>
+              <bucket>&quot;Arizona&quot;</bucket>
+              <bucket>&quot;Nordstrom&quot;</bucket>
+              <bucket>&quot;Roberto Cavalli&quot;</bucket>
+              <bucket>&quot;Fabletics&quot;</bucket>
+              <bucket>&quot;Nine West&quot;</bucket>
+              <bucket>&quot;GANT&quot;</bucket>
+              <bucket>&quot;Cotton On&quot;</bucket>
+              <bucket>&quot;Cartier&quot;</bucket>
+              <bucket>&quot;Carvela&quot;</bucket>
+              <bucket>&quot;Norse Projects&quot;</bucket>
+              <bucket>&quot;SIKSILK&quot;</bucket>
+              <bucket>&quot;Xhilaration&quot;</bucket>
+              <bucket>&quot;Monsoon&quot;</bucket>
+              <bucket>&quot;Stuart Weitzman&quot;</bucket>
+              <bucket>&quot;Sézane&quot;</bucket>
+              <bucket>&quot;Revolution&quot;</bucket>
+              <bucket>&quot;Laura Mercier&quot;</bucket>
+              <bucket>&quot;ELLE&quot;</bucket>
+              <bucket>&quot;ALDO&quot;</bucket>
+              <bucket>&quot;Vineyard Vines&quot;</bucket>
+              <bucket>&quot;Chrome Hearts&quot;</bucket>
+              <bucket>&quot;Deandri&quot;</bucket>
+              <bucket>&quot;Warner Bros.&quot;</bucket>
+              <bucket>&quot;Needles&quot;</bucket>
+              <bucket>&quot;Independent&quot;</bucket>
+              <bucket>&quot;Aritzia&quot;</bucket>
+              <bucket>&quot;Le Coq Sportif&quot;</bucket>
+              <bucket>&quot;Garage&quot;</bucket>
+              <bucket>&quot;Boux Avenue&quot;</bucket>
+              <bucket>&quot;TOMS&quot;</bucket>
+              <bucket>&quot;Diadora&quot;</bucket>
+              <bucket>&quot;Hobbs&quot;</bucket>
+              <bucket>&quot;Jordache&quot;</bucket>
+              <bucket>&quot;Illustrated People&quot;</bucket>
+              <bucket>&quot;Diamond Supply Co.&quot;</bucket>
+              <bucket>&quot;Lucky Brand&quot;</bucket>
+              <bucket>&quot;Lancôme&quot;</bucket>
+              <bucket>&quot;Bianca Chandon&quot;</bucket>
+              <bucket>&quot;Brain Dead&quot;</bucket>
+              <bucket>&quot;No Boundaries&quot;</bucket>
+              <bucket>&quot;New Era&quot;</bucket>
+              <bucket>&quot;Joules&quot;</bucket>
+              <bucket>&quot;Real Techniques&quot;</bucket>
+              <bucket>&quot;Triangl&quot;</bucket>
+              <bucket>&quot;Number (N)ine&quot;</bucket>
+              <bucket>&quot;Rockies&quot;</bucket>
+              <bucket>&quot;Thomas Sabo&quot;</bucket>
+              <bucket>&quot;Jarlo&quot;</bucket>
+              <bucket>&quot;ModCloth&quot;</bucket>
+              <bucket>&quot;Coca-Cola&quot;</bucket>
+              <bucket>&quot;Mossimo&quot;</bucket>
+              <bucket>&quot;Teva&quot;</bucket>
+              <bucket>&quot;6\%DOKIDOKI&quot;</bucket>
+              <bucket>&quot;Woolrich&quot;</bucket>
+              <bucket>&quot;George&quot;</bucket>
+              <bucket>&quot;Comino Couture&quot;</bucket>
+              <bucket>&quot;Delia&apos;s&quot;</bucket>
+              <bucket>&quot;Cheap Monday&quot;</bucket>
+              <bucket>&quot;Bill Blass&quot;</bucket>
+              <bucket>&quot;Dooney &amp; Bourke&quot;</bucket>
+              <bucket>&quot;Farah&quot;</bucket>
+              <bucket>&quot;Skinnydip&quot;</bucket>
+              <bucket>&quot;Craig Green&quot;</bucket>
+              <bucket>&quot;Rampage&quot;</bucket>
+              <bucket>&quot;Philipp Plein&quot;</bucket>
+              <bucket>&quot;Canterbury&quot;</bucket>
+              <bucket>&quot;Crocs&quot;</bucket>
+              <bucket>&quot;Self-portrait&quot;</bucket>
+              <bucket>&quot;KENDALL + KYLIE&quot;</bucket>
+              <bucket>&quot;Kiehl&apos;s&quot;</bucket>
+              <bucket>&quot;Links of London&quot;</bucket>
+              <bucket>&quot;Zadig &amp; Voltaire&quot;</bucket>
+              <bucket>&quot;Marcelo Burlon&quot;</bucket>
+              <bucket>&quot;Brandy melville&quot;</bucket>
+              <bucket>&quot;Wildfox&quot;</bucket>
+              <bucket>&quot;ALEX AND ANI&quot;</bucket>
+              <bucket>&quot;The Kooples&quot;</bucket>
+              <bucket>&quot;Mickey &amp; Co.&quot;</bucket>
+              <bucket>&quot;Mario Badescu&quot;</bucket>
+              <bucket>&quot;11 Degrees&quot;</bucket>
+              <bucket>&quot;Young Versace&quot;</bucket>
+              <bucket>&quot;Oakley&quot;</bucket>
+              <bucket>&quot;Talbots&quot;</bucket>
+              <bucket>&quot;Maje&quot;</bucket>
+              <bucket>&quot;Fossil&quot;</bucket>
+              <bucket>&quot;Lomography&quot;</bucket>
+              <bucket>&quot;Lime Crime&quot;</bucket>
+              <bucket>&quot;Primitive&quot;</bucket>
+              <bucket>&quot;Mudd Clothing&quot;</bucket>
+              <bucket>&quot;Mallet&quot;</bucket>
+              <bucket>&quot;F&amp;F&quot;</bucket>
+              <bucket>&quot;Iron Fist&quot;</bucket>
+              <bucket>&quot;Tillys&quot;</bucket>
+              <bucket>&quot;Frederick&apos;s of Hollywood&quot;</bucket>
+              <bucket>&quot;Volcom&quot;</bucket>
+              <bucket>&quot;Saucony&quot;</bucket>
+              <bucket>&quot;BECCA&quot;</bucket>
+              <bucket>&quot;Laura Ashley&quot;</bucket>
+              <bucket>&quot;Quiksilver&quot;</bucket>
+              <bucket>&quot;RE/DONE&quot;</bucket>
+              <bucket>&quot;John Galliano&quot;</bucket>
+              <bucket>&quot;A.P.C.&quot;</bucket>
+              <bucket>&quot;JNCO&quot;</bucket>
+              <bucket>&quot;Chase Authentics&quot;</bucket>
+              <bucket>&quot;AX Paris&quot;</bucket>
+              <bucket>&quot;Planet Hollywood&quot;</bucket>
+              <bucket>&quot;FUBU&quot;</bucket>
+              <bucket>&quot;Dime&quot;</bucket>
+              <bucket>&quot;Glamorous&quot;</bucket>
+              <bucket>&quot;Casio&quot;</bucket>
+              <bucket>&quot;Fiorelli&quot;</bucket>
+              <bucket>&quot;032c&quot;</bucket>
+              <bucket>&quot;Midnight Studios&quot;</bucket>
+              <bucket>&quot;Select Fashion&quot;</bucket>
+              <bucket>&quot;Chinon&quot;</bucket>
+              <bucket>&quot;Kipling&quot;</bucket>
+              <bucket>&quot;Stray Rats&quot;</bucket>
+              <bucket>&quot;St. John&apos;s Bay&quot;</bucket>
+              <bucket>&quot;Clarins&quot;</bucket>
+              <bucket>&quot;Gitano&quot;</bucket>
+              <bucket>&quot;Belstaff&quot;</bucket>
+              <bucket>&quot;Valfre&quot;</bucket>
+              <bucket>&quot;Heron Preston&quot;</bucket>
+              <bucket>&quot;Aéropostale&quot;</bucket>
+              <bucket>&quot;Members Only&quot;</bucket>
+              <bucket>&quot;Havaianas&quot;</bucket>
+              <bucket>&quot;Chic&quot;</bucket>
+              <bucket>&quot;Thierry Mugler&quot;</bucket>
+              <bucket>&quot;Ann Taylor&quot;</bucket>
+              <bucket>&quot;Sophia Webster&quot;</bucket>
+              <bucket>&quot;Daisy Street&quot;</bucket>
+              <bucket>&quot;Kodak&quot;</bucket>
+              <bucket>&quot;Rocky Mountain&quot;</bucket>
+              <bucket>&quot;bareMinerals&quot;</bucket>
+              <bucket>&quot;Wu Wear&quot;</bucket>
+              <bucket>&quot;NYX&quot;</bucket>
+              <bucket>&quot;Basement&quot;</bucket>
+              <bucket>&quot;Ksubi&quot;</bucket>
+              <bucket>&quot;Accessorize&quot;</bucket>
+              <bucket>&quot;Bronze 56K&quot;</bucket>
+              <bucket>&quot;Matalan&quot;</bucket>
+              <bucket>&quot;THE LIMITED&quot;</bucket>
+              <bucket>&quot;K-Way&quot;</bucket>
+              <bucket>&quot;Roxy&quot;</bucket>
+              <bucket>&quot;Matisse&quot;</bucket>
+              <bucket>&quot;Kimchi Blue&quot;</bucket>
+              <bucket>&quot;Ben Davis&quot;</bucket>
+              <bucket>&quot;Nina Ricci&quot;</bucket>
+              <bucket>&quot;Collectif&quot;</bucket>
+              <bucket>&quot;Rue 21&quot;</bucket>
+              <bucket>&quot;Olivia Burton&quot;</bucket>
+              <bucket>&quot;L&apos;Oréal&quot;</bucket>
+              <bucket>&quot;Acme Clothing&quot;</bucket>
+              <bucket>&quot;Life is Good&quot;</bucket>
+              <bucket>&quot;Papaya&quot;</bucket>
+              <bucket>&quot;Iceberg&quot;</bucket>
+              <bucket>&quot;Max Mara&quot;</bucket>
+              <bucket>&quot;Basic Editions&quot;</bucket>
+              <bucket>&quot;3.1 Phillip Lim&quot;</bucket>
+              <bucket>&quot;O&apos;Neill&quot;</bucket>
+              <bucket>&quot;Le Jean de Marithe Francois Girbaud&quot;</bucket>
+              <bucket>&quot;Debenhams&quot;</bucket>
+              <bucket>&quot;Joyrich&quot;</bucket>
+              <bucket>&quot;Contax&quot;</bucket>
+              <bucket>&quot;Cole Haan&quot;</bucket>
+              <bucket>&quot;Stila Cosmetics&quot;</bucket>
+              <bucket>&quot;Vince&quot;</bucket>
+              <bucket>&quot;Sears&quot;</bucket>
+              <bucket>&quot;Sugarpill&quot;</bucket>
+              <bucket>&quot;FatFace&quot;</bucket>
+              <bucket>&quot;Golf wang&quot;</bucket>
+              <bucket>&quot;Torrid&quot;</bucket>
+              <bucket>&quot;Element&quot;</bucket>
+              <bucket>&quot;Wallis&quot;</bucket>
+              <bucket>&quot;Milk Makeup&quot;</bucket>
+              <bucket>&quot;Sperry&quot;</bucket>
+              <bucket>&quot;Novesta&quot;</bucket>
+              <bucket>&quot;Esprit&quot;</bucket>
+              <bucket>&quot;Buscemi&quot;</bucket>
+              <bucket>&quot;Undercover&quot;</bucket>
+              <bucket>&quot;Izod&quot;</bucket>
+              <bucket>&quot;Mansur Gavriel&quot;</bucket>
+              <bucket>&quot;Gilly Hicks&quot;</bucket>
+              <bucket>&quot;All That Jazz&quot;</bucket>
+              <bucket>&quot;St Michael&quot;</bucket>
+              <bucket>&quot;IT Cosmetics&quot;</bucket>
+              <bucket>&quot;Maybelline&quot;</bucket>
+              <bucket>&quot;Monica Vinader&quot;</bucket>
+              <bucket>&quot;Undefeated&quot;</bucket>
+              <bucket>&quot;Henri Lloyd&quot;</bucket>
+              <bucket>&quot;Radley&quot;</bucket>
+              <bucket>&quot;Alfred Dunner&quot;</bucket>
+              <bucket>&quot;Karrimor&quot;</bucket>
+              <bucket>&quot;G-Star&quot;</bucket>
+              <bucket>&quot;Baby Phat&quot;</bucket>
+              <bucket>&quot;No. 7&quot;</bucket>
+              <bucket>&quot;DC Shoes&quot;</bucket>
+              <bucket>&quot;Ben Sherman&quot;</bucket>
+              <bucket>&quot;Hype&quot;</bucket>
+              <bucket>&quot;Outdoor Voices&quot;</bucket>
+              <bucket>&quot;RVCA&quot;</bucket>
+              <bucket>&quot;SLNGHR&quot;</bucket>
+              <bucket>&quot;Le Labo&quot;</bucket>
+              <bucket>&quot;CAT&quot;</bucket>
+              <bucket>&quot;Soap and Glory&quot;</bucket>
+              <bucket>&quot;La Mer&quot;</bucket>
+              <bucket>&quot;Penn&quot;</bucket>
+              <bucket>&quot;Criminal Damage&quot;</bucket>
+              <bucket>&quot;Brixton&quot;</bucket>
+              <bucket>&quot;Marshall Artistu&quot;</bucket>
+              <bucket>&quot;Ransom&quot;</bucket>
+              <bucket>&quot;Punkyfish&quot;</bucket>
+              <bucket>&quot;Cherokee&quot;</bucket>
+              <bucket>&quot;Sag Harbor&quot;</bucket>
+              <bucket>&quot;XOXO&quot;</bucket>
+              <bucket>&quot;Macy&apos;s&quot;</bucket>
+              <bucket>&quot;Frye&quot;</bucket>
+              <bucket>&quot;Modern Vice&quot;</bucket>
+              <bucket>&quot;Aeropostale&quot;</bucket>
+              <bucket>&quot;Orlebar Brown&quot;</bucket>
+              <bucket>&quot;AMI&quot;</bucket>
+              <bucket>&quot;Aerie&quot;</bucket>
+              <bucket>&quot;Sister Jane&quot;</bucket>
+              <bucket>&quot;Parlez&quot;</bucket>
+              <bucket>&quot;Speedo&quot;</bucket>
+              <bucket>&quot;Sweater Shop&quot;</bucket>
+              <bucket>&quot;Keds&quot;</bucket>
+              <bucket>&quot;Zena Jeans&quot;</bucket>
+              <bucket>&quot;GLAMGLOW&quot;</bucket>
+              <bucket>&quot;Rains&quot;</bucket>
+              <bucket>&quot;Jack Wolfskin&quot;</bucket>
+              <bucket>&quot;Tatty Devine&quot;</bucket>
+              <bucket>&quot;Smashbox&quot;</bucket>
+              <bucket>&quot;London Fog&quot;</bucket>
+              <bucket>&quot;Goodhood&quot;</bucket>
+              <bucket>&quot;Persol&quot;</bucket>
+              <bucket>&quot;Emilio Pucci&quot;</bucket>
+              <bucket>&quot;Stylenanda&quot;</bucket>
+              <bucket>&quot;Penfield&quot;</bucket>
+              <bucket>&quot;Jack &amp; Jones&quot;</bucket>
+              <bucket>&quot;Loeffler Randall&quot;</bucket>
+              <bucket>&quot;Tommy Bahama&quot;</bucket>
+              <bucket>&quot;Peacocks&quot;</bucket>
+              <bucket>&quot;Burton&quot;</bucket>
+              <bucket>&quot;Phoebe English&quot;</bucket>
+              <bucket>&quot;St. Tropez&quot;</bucket>
+              <bucket>&quot;Moda International&quot;</bucket>
+              <bucket>&quot;Rare London&quot;</bucket>
+              <bucket>&quot;Noisy May&quot;</bucket>
+              <bucket>&quot;Stan Ray&quot;</bucket>
+              <bucket>&quot;Miss Sixty&quot;</bucket>
+              <bucket>&quot;Illamasqua&quot;</bucket>
+              <bucket>&quot;Cotton Traders&quot;</bucket>
+              <bucket>&quot;Budweiser&quot;</bucket>
+              <bucket>&quot;Jaeger&quot;</bucket>
+              <bucket>&quot;See by Chloé&quot;</bucket>
+              <bucket>&quot;Our Legacy&quot;</bucket>
+              <bucket>&quot;mixxmix&quot;</bucket>
+              <bucket>&quot;Lindy Bop&quot;</bucket>
+              <bucket>&quot;Fox Racing&quot;</bucket>
+              <bucket>&quot;L.e.i.&quot;</bucket>
+              <bucket>&quot;Jigsaw&quot;</bucket>
+              <bucket>&quot;Mizuno&quot;</bucket>
+              <bucket>&quot;Junk Food&quot;</bucket>
+              <bucket>&quot;BLANK NYC&quot;</bucket>
+              <bucket>&quot;Eckhaus Latta&quot;</bucket>
+              <bucket>&quot;Romwe&quot;</bucket>
+              <bucket>&quot;Walter Van Beirendonck&quot;</bucket>
+              <bucket>&quot;Surf Style&quot;</bucket>
+              <bucket>&quot;Phase Eight&quot;</bucket>
+              <bucket>&quot;Wilson’s Leather&quot;</bucket>
+              <bucket>&quot;Ricoh&quot;</bucket>
+              <bucket>&quot;Delia’s&quot;</bucket>
+              <bucket>&quot;Karen Scott&quot;</bucket>
+              <bucket>&quot;Bugle Boy&quot;</bucket>
+              <bucket>&quot;Parra&quot;</bucket>
+              <bucket>&quot;BCBGMAXAZRIA&quot;</bucket>
+              <bucket>&quot;Regatta&quot;</bucket>
+              <bucket>&quot;OMOCAT&quot;</bucket>
+              <bucket>&quot;YMC&quot;</bucket>
+              <bucket>&quot;Blair&quot;</bucket>
+              <bucket>&quot;Athleta&quot;</bucket>
+              <bucket>&quot;Vera Wang&quot;</bucket>
+              <bucket>&quot;Neutrogena&quot;</bucket>
+              <bucket>&quot;NFL&quot;</bucket>
+              <bucket>&quot;Morning Sun&quot;</bucket>
+              <bucket>&quot;Melissa&quot;</bucket>
+              <bucket>&quot;True Decadence&quot;</bucket>
+              <bucket>&quot;Revlon&quot;</bucket>
+              <bucket>&quot;Camel&quot;</bucket>
+              <bucket>&quot;Steve &amp; Barry&apos;s&quot;</bucket>
+              <bucket>&quot;MM6 Maison Margiela&quot;</bucket>
+              <bucket>&quot;Merona&quot;</bucket>
+              <bucket>&quot;Soffe&quot;</bucket>
+              <bucket>&quot;Proenza Schouler&quot;</bucket>
+              <bucket>&quot;KIKO Milano&quot;</bucket>
+              <bucket>&quot;Thom Browne&quot;</bucket>
+              <bucket>&quot;White Stag&quot;</bucket>
+              <bucket>&quot;Rocket Dog&quot;</bucket>
+              <bucket>&quot;BVLGARI&quot;</bucket>
+              <bucket>&quot;Marithé + François Girbaud&quot;</bucket>
+              <bucket>&quot;Liz Earle&quot;</bucket>
+              <bucket>&quot;Cape Robbin&quot;</bucket>
+              <bucket>&quot;Maya&quot;</bucket>
+              <bucket>&quot;Red Herring&quot;</bucket>
+              <bucket>&quot;Massimo Dutti&quot;</bucket>
+              <bucket>&quot;Honey Punch&quot;</bucket>
+              <bucket>&quot;No Fear&quot;</bucket>
+              <bucket>&quot;KOOKAÏ&quot;</bucket>
+              <bucket>&quot;Hackett&quot;</bucket>
+              <bucket>&quot;1822 Denim&quot;</bucket>
+              <bucket>&quot;Badgley Mischka&quot;</bucket>
+              <bucket>&quot;High Sierra&quot;</bucket>
+              <bucket>&quot;Little Mistress&quot;</bucket>
+              <bucket>&quot;Prince&quot;</bucket>
+              <bucket>&quot;Kendra Scott&quot;</bucket>
+              <bucket>&quot;Bally&quot;</bucket>
+              <bucket>&quot;Schuh&quot;</bucket>
+              <bucket>&quot;Emerica&quot;</bucket>
+              <bucket>&quot;AQ/AQ&quot;</bucket>
+              <bucket>&quot;Rimmel&quot;</bucket>
+              <bucket>&quot;Diane von Furstenberg&quot;</bucket>
+              <bucket>&quot;Misbhv&quot;</bucket>
+              <bucket>&quot;Astrid &amp; Miyu&quot;</bucket>
+              <bucket>&quot;U.S. Polo Assn.&quot;</bucket>
+              <bucket>&quot;Make Up For Ever&quot;</bucket>
+              <bucket>&quot;Havianas&quot;</bucket>
+              <bucket>&quot;Pierre Cardin&quot;</bucket>
+              <bucket>&quot;Raised By Wolves&quot;</bucket>
+              <bucket>&quot;Martine Rose&quot;</bucket>
+              <bucket>&quot;LOFT&quot;</bucket>
+              <bucket>&quot;Ivory Ella&quot;</bucket>
+              <bucket>&quot;Beautyblender&quot;</bucket>
+              <bucket>&quot;Dover Street Market&quot;</bucket>
+              <bucket>&quot;Pepe Jeans&quot;</bucket>
+              <bucket>&quot;Trespass&quot;</bucket>
+              <bucket>&quot;Yumi Kim&quot;</bucket>
+              <bucket>&quot;Puffa&quot;</bucket>
+              <bucket>&quot;Supra&quot;</bucket>
+              <bucket>&quot;Issey Miyake&quot;</bucket>
+              <bucket>&quot;BP&quot;</bucket>
+              <bucket>&quot;Tissot&quot;</bucket>
+              <bucket>&quot;Cache&quot;</bucket>
+              <bucket>&quot;FUCT&quot;</bucket>
+              <bucket>&quot;The Quiet Life&quot;</bucket>
+              <bucket>&quot;Sam Edelman&quot;</bucket>
+              <bucket>&quot;Denim &amp; Co.&quot;</bucket>
+              <bucket>&quot;Perry Ellis&quot;</bucket>
+              <bucket>&quot;Vita Fede&quot;</bucket>
+              <bucket>&quot;Filling Pieces&quot;</bucket>
+              <bucket>&quot;Solid &amp; Striped&quot;</bucket>
+              <bucket>&quot;Rachel Comey&quot;</bucket>
+              <bucket>&quot;Onitsuka Tiger&quot;</bucket>
+              <bucket>&quot;Rag &amp; Bone&quot;</bucket>
+              <bucket>&quot;Nudie Jeans&quot;</bucket>
+              <bucket>&quot;ChloBo&quot;</bucket>
+              <bucket>&quot;Anna Sui&quot;</bucket>
+              <bucket>&quot;Lee Stafford&quot;</bucket>
+              <bucket>&quot;Chained &amp; Able&quot;</bucket>
+              <bucket>&quot;Stone Cold Fox&quot;</bucket>
+              <bucket>&quot;Victoria Beckham&quot;</bucket>
+              <bucket>&quot;Butter Goods&quot;</bucket>
+              <bucket>&quot;L.A. Blues&quot;</bucket>
+              <bucket>&quot;Vero Moda&quot;</bucket>
+              <bucket>&quot;Lonsdale&quot;</bucket>
+              <bucket>&quot;OneTeaspoon&quot;</bucket>
+              <bucket>&quot;Cottweiler&quot;</bucket>
+              <bucket>&quot;Bonjour&quot;</bucket>
+              <bucket>&quot;Marni&quot;</bucket>
+              <bucket>&quot;3sixteen&quot;</bucket>
+              <bucket>&quot;Sorel&quot;</bucket>
+              <bucket>&quot;Rebecca Minkoff&quot;</bucket>
+              <bucket>&quot;Theory&quot;</bucket>
+              <bucket>&quot;Folk&quot;</bucket>
+              <bucket>&quot;Love Triangle&quot;</bucket>
+              <bucket>&quot;Ocean Pacific&quot;</bucket>
+              <bucket>&quot;Nicole Miller&quot;</bucket>
+              <bucket>&quot;Born x Raised&quot;</bucket>
+              <bucket>&quot;Avon&quot;</bucket>
+              <bucket>&quot;Wet Seal&quot;</bucket>
+              <bucket>&quot;Airwalk&quot;</bucket>
+              <bucket>&quot;STAY COOL NYC&quot;</bucket>
+              <bucket>&quot;Ashley Williams&quot;</bucket>
+              <bucket>&quot;Human Made&quot;</bucket>
+              <bucket>&quot;ALEXACHUNG&quot;</bucket>
+              <bucket>&quot;Alien Workshop&quot;</bucket>
+              <bucket>&quot;Haider Ackermann&quot;</bucket>
+              <bucket>&quot;Eye Candy&quot;</bucket>
+              <bucket>&quot;House of Holland&quot;</bucket>
+              <bucket>&quot;Club Monaco&quot;</bucket>
+              <bucket>&quot;Cambridge Satchel&quot;</bucket>
+              <bucket>&quot;B.U.M. Equipment&quot;</bucket>
+              <bucket>&quot;Wasted Paris&quot;</bucket>
+              <bucket>&quot;Lulu Guinness&quot;</bucket>
+              <bucket>&quot;AG Jeans&quot;</bucket>
+              <bucket>&quot;Pass Port&quot;</bucket>
+              <bucket>&quot;Aries Arise&quot;</bucket>
+              <bucket>&quot;Armor Lux&quot;</bucket>
+              <bucket>&quot;Religion&quot;</bucket>
+              <bucket>&quot;LuLaRoe&quot;</bucket>
+              <bucket>&quot;Yohji Yamamoto&quot;</bucket>
+              <bucket>&quot;Newport&quot;</bucket>
+              <bucket>&quot;philosophy&quot;</bucket>
+              <bucket>&quot;Sleek&quot;</bucket>
+              <bucket>&quot;Zoeva&quot;</bucket>
+              <bucket>&quot;Hysteric Glamour&quot;</bucket>
+              <bucket>&quot;Father &amp; Sons&quot;</bucket>
+              <bucket>&quot;Versus&quot;</bucket>
+              <bucket>&quot;Apricot&quot;</bucket>
+              <bucket>&quot;Principles&quot;</bucket>
+              <bucket>&quot;Hélas&quot;</bucket>
+              <bucket>&quot;Ju Ju&quot;</bucket>
+              <bucket>&quot;Dertbag&quot;</bucket>
+              <bucket>&quot;Apple Bottoms&quot;</bucket>
+              <bucket>&quot;MinkPink&quot;</bucket>
+              <bucket>&quot;Rokoko&quot;</bucket>
+              <bucket>&quot;Ambush&quot;</bucket>
+              <bucket>&quot;Paco Sport&quot;</bucket>
+              <bucket>&quot;Brooks Brothers&quot;</bucket>
+              <bucket>&quot;Freya&quot;</bucket>
+              <bucket>&quot;Bench&quot;</bucket>
+              <bucket>&quot;Konica&quot;</bucket>
+              <bucket>&quot;Set&quot;</bucket>
+              <bucket>&quot;Rhude&quot;</bucket>
+              <bucket>&quot;H! by Henry Holland&quot;</bucket>
+              <bucket>&quot;Katie Loxton&quot;</bucket>
+              <bucket>&quot;L&apos;Occitane en Provence&quot;</bucket>
+              <bucket>&quot;AGB&quot;</bucket>
+              <bucket>&quot;Manolo Blahnik&quot;</bucket>
+              <bucket>&quot;Vivitar&quot;</bucket>
+              <bucket>&quot;Diane von Fürstenberg&quot;</bucket>
+              <bucket>&quot;Canyon River Blues&quot;</bucket>
+              <bucket>&quot;Caterpillar&quot;</bucket>
+              <bucket>&quot;Millie Mackintosh&quot;</bucket>
+              <bucket>&quot;Dr. Denim&quot;</bucket>
+              <bucket>&quot;Y.R.U.&quot;</bucket>
+              <bucket>&quot;Replay&quot;</bucket>
+              <bucket>&quot;alice + olivia&quot;</bucket>
+              <bucket>&quot;Pour Moi&quot;</bucket>
+              <bucket>&quot;KTZ&quot;</bucket>
+              <bucket>&quot;MadeMe&quot;</bucket>
+              <bucket>&quot;Jessica Simpson&quot;</bucket>
+              <bucket>&quot;Hublot&quot;</bucket>
+              <bucket>&quot;Koret&quot;</bucket>
+              <bucket>&quot;Hot Kiss&quot;</bucket>
+              <bucket>&quot;C&amp;A&quot;</bucket>
+              <bucket>&quot;Salomon&quot;</bucket>
+              <bucket>&quot;42922&quot;</bucket>
+              <bucket>&quot;Jams World&quot;</bucket>
+              <bucket>&quot;Faith&quot;</bucket>
+              <bucket>&quot;Ice Cream&quot;</bucket>
+              <bucket>&quot;e.l.f.&quot;</bucket>
+              <bucket>&quot;Brics&quot;</bucket>
+              <bucket>&quot;J Brand&quot;</bucket>
+              <bucket>&quot;Petite Sophisticate&quot;</bucket>
+              <bucket>&quot;La Belle&quot;</bucket>
+              <bucket>&quot;PAIGE&quot;</bucket>
+              <bucket>&quot;Energie&quot;</bucket>
+              <bucket>&quot;Lotto&quot;</bucket>
+              <bucket>&quot;Tibi&quot;</bucket>
+              <bucket>&quot;VFILES&quot;</bucket>
+              <bucket>&quot;Barry M&quot;</bucket>
+              <bucket>&quot;Dockers&quot;</bucket>
+              <bucket>&quot;Nails Inc.&quot;</bucket>
+              <bucket>&quot;Kenneth Cole&quot;</bucket>
+              <bucket>&quot;Casual Corner&quot;</bucket>
+              <bucket>&quot;Aviator Nation&quot;</bucket>
+              <bucket>&quot;Crooks &amp; Castles&quot;</bucket>
+              <bucket>&quot;Hummel&quot;</bucket>
+              <bucket>&quot;Keepsake&quot;</bucket>
+              <bucket>&quot;Hurley&quot;</bucket>
+              <bucket>&quot;Derek Lam&quot;</bucket>
+              <bucket>&quot;OPI&quot;</bucket>
+              <bucket>&quot;C2H4 Los Angeles&quot;</bucket>
+              <bucket>&quot;Sasson&quot;</bucket>
+              <bucket>&quot;Pelle Pelle&quot;</bucket>
+              <bucket>&quot;Animal&quot;</bucket>
+              <bucket>&quot;Bourjois&quot;</bucket>
+              <bucket>&quot;Lykke Wullf&quot;</bucket>
+              <bucket>&quot;A&apos;GACI&quot;</bucket>
+              <bucket>&quot;Three Floor&quot;</bucket>
+              <bucket>&quot;Intentionally Blank&quot;</bucket>
+              <bucket>&quot;IZ Byer&quot;</bucket>
+              <bucket>&quot;Jaclyn Smith&quot;</bucket>
+              <bucket>&quot;Alltimers&quot;</bucket>
+              <bucket>&quot;Oscar de la Renta&quot;</bucket>
+              <bucket>&quot;Ottolinger&quot;</bucket>
+              <bucket>&quot;FREECITY&quot;</bucket>
+              <bucket>&quot;Bertie&quot;</bucket>
+              <bucket>&quot;Current Seen&quot;</bucket>
+              <bucket>&quot;Neighborhood&quot;</bucket>
+              <bucket>&quot;Anita Ko&quot;</bucket>
+              <bucket>&quot;Chinese Laundry&quot;</bucket>
+              <bucket>&quot;Elie Tahari&quot;</bucket>
+              <bucket>&quot;Erika &amp; Co.&quot;</bucket>
+              <bucket>&quot;Dream But Do Not Sleep&quot;</bucket>
+              <bucket>&quot;Elizabeth Arden&quot;</bucket>
+              <bucket>&quot;Privacy Please&quot;</bucket>
+              <bucket>&quot;LIKELY&quot;</bucket>
+              <bucket>&quot;Joe Rocket&quot;</bucket>
+              <bucket>&quot;Wonderbra&quot;</bucket>
+              <bucket>&quot;Vila&quot;</bucket>
+              <bucket>&quot;B.U.M Equipment&quot;</bucket>
+              <bucket>&quot;Forever New&quot;</bucket>
+              <bucket>&quot;White House Black Market&quot;</bucket>
+              <bucket>&quot;MSGM&quot;</bucket>
+              <bucket>&quot;Sisley&quot;</bucket>
+              <bucket>&quot;Poler&quot;</bucket>
+              <bucket>&quot;Vintage Havana&quot;</bucket>
+              <bucket>&quot;Penguin&quot;</bucket>
+              <bucket>&quot;Anchor Blue&quot;</bucket>
+              <bucket>&quot;Milk It&quot;</bucket>
+              <bucket>&quot;Tumi&quot;</bucket>
+              <bucket>&quot;LPA&quot;</bucket>
+              <bucket>&quot;Alife&quot;</bucket>
+              <bucket>&quot;Etnies&quot;</bucket>
+              <bucket>&quot;Current/Elliott&quot;</bucket>
+              <bucket>&quot;Jou Jou&quot;</bucket>
+              <bucket>&quot;Adore Me&quot;</bucket>
+              <bucket>&quot;Leslie Fay&quot;</bucket>
+              <bucket>&quot;Lilly Pulitzer&quot;</bucket>
+              <bucket>&quot;Beverly Hills Polo Club&quot;</bucket>
+              <bucket>&quot;Notations&quot;</bucket>
+              <bucket>&quot;Shu Uemura&quot;</bucket>
+              <bucket>&quot;Jantzen&quot;</bucket>
+              <bucket>&quot;Rocawear&quot;</bucket>
+              <bucket>&quot;Hobo International&quot;</bucket>
+              <bucket>&quot;Twenty One Pilots&quot;</bucket>
+              <bucket>&quot;Breitling&quot;</bucket>
+              <bucket>&quot;GCDS&quot;</bucket>
+              <bucket>&quot;Angels&quot;</bucket>
+              <bucket>&quot;Zimmermann&quot;</bucket>
+              <bucket>&quot;Style &amp; Co&quot;</bucket>
+              <bucket>&quot;Long Live South Bank&quot;</bucket>
+              <bucket>&quot;John Zack&quot;</bucket>
+              <bucket>&quot;Rydale&quot;</bucket>
+              <bucket>&quot;Hood By Air&quot;</bucket>
+              <bucket>&quot;Staud&quot;</bucket>
+              <bucket>&quot;Brighton&quot;</bucket>
+              <bucket>&quot;Spalding&quot;</bucket>
+              <bucket>&quot;Coldwater Creek&quot;</bucket>
+              <bucket>&quot;MUA&quot;</bucket>
+              <bucket>&quot;Rolex&quot;</bucket>
+              <bucket>&quot;Seychelles&quot;</bucket>
+              <bucket>&quot;Repetto&quot;</bucket>
+              <bucket>&quot;7 For All Mankind&quot;</bucket>
+              <bucket>&quot;Harajuku Lovers&quot;</bucket>
+              <bucket>&quot;Miss Me&quot;</bucket>
+              <bucket>&quot;Windsor&quot;</bucket>
+              <bucket>&quot;Frock and Frill&quot;</bucket>
+              <bucket>&quot;Temperley&quot;</bucket>
+              <bucket>&quot;Damir Doma&quot;</bucket>
+              <bucket>&quot;JCPenney&quot;</bucket>
+              <bucket>&quot;Needle &amp; Thread&quot;</bucket>
+              <bucket>&quot;La Roche-Posay&quot;</bucket>
+              <bucket>&quot;Skullcandy&quot;</bucket>
+              <bucket>&quot;Capulet&quot;</bucket>
+              <bucket>&quot;Jil Sander&quot;</bucket>
+              <bucket>&quot;BCBGeneration&quot;</bucket>
+              <bucket>&quot;Wear What You Feel&quot;</bucket>
+              <bucket>&quot;Overwatch&quot;</bucket>
+              <bucket>&quot;Velvet&quot;</bucket>
+              <bucket>&quot;Lisa Says Gah&quot;</bucket>
+              <bucket>&quot;Only &amp; Sons&quot;</bucket>
+              <bucket>&quot;francesca&apos;s&quot;</bucket>
+              <bucket>&quot;K-Swiss&quot;</bucket>
+              <bucket>&quot;Paris Blues&quot;</bucket>
+              <bucket>&quot;YMI Jeans&quot;</bucket>
+              <bucket>&quot;Liam Hodges&quot;</bucket>
+              <bucket>&quot;Gotcha&quot;</bucket>
+              <bucket>&quot;Claudia Richard&quot;</bucket>
+              <bucket>&quot;Stefano&quot;</bucket>
+              <bucket>&quot;Pringle&quot;</bucket>
+              <bucket>&quot;Maggy London&quot;</bucket>
+              <bucket>&quot;L*Space&quot;</bucket>
+              <bucket>&quot;Maison Scotch&quot;</bucket>
+              <bucket>&quot;Selected&quot;</bucket>
+              <bucket>&quot;Call it Spring&quot;</bucket>
+              <bucket>&quot;Dunlop&quot;</bucket>
+              <bucket>&quot;California Looks&quot;</bucket>
+              <bucket>&quot;Kasper&quot;</bucket>
+              <bucket>&quot;Felina&quot;</bucket>
+              <bucket>&quot;Chaus&quot;</bucket>
+              <bucket>&quot;Sportmax&quot;</bucket>
+              <bucket>&quot;Almost Famous&quot;</bucket>
+              <bucket>&quot;Bellfield&quot;</bucket>
+              <bucket>&quot;Neon Rose&quot;</bucket>
+              <bucket>&quot;Kiss The Sky&quot;</bucket>
+              <bucket>&quot;Apt. 9&quot;</bucket>
+              <bucket>&quot;NBA&quot;</bucket>
+              <bucket>&quot;Native Youth&quot;</bucket>
+              <bucket>&quot;Vince Camuto&quot;</bucket>
+              <bucket>&quot;Illusive London&quot;</bucket>
+              <bucket>&quot;X-Large&quot;</bucket>
+              <bucket>&quot;Cynthia Rowley&quot;</bucket>
+              <bucket>&quot;Muji&quot;</bucket>
+              <bucket>&quot;Wtaps&quot;</bucket>
+              <bucket>&quot;Bronica&quot;</bucket>
+              <bucket>&quot;LeSportsac&quot;</bucket>
+              <bucket>&quot;Wet n Wild&quot;</bucket>
+              <bucket>&quot;BeBop&quot;</bucket>
+              <bucket>&quot;Zoo York&quot;</bucket>
+              <bucket>&quot;Timex&quot;</bucket>
+              <bucket>&quot;Squeeze Girls&quot;</bucket>
+              <bucket>&quot;Nevica&quot;</bucket>
+              <bucket>&quot;Desigual&quot;</bucket>
+              <bucket>&quot;Rockport&quot;</bucket>
+              <bucket>&quot;Charming Charlie&quot;</bucket>
+              <bucket>&quot;Country Scene&quot;</bucket>
+              <bucket>&quot;Shiseido&quot;</bucket>
+              <bucket>&quot;Max Studio&quot;</bucket>
+              <bucket>&quot;Agora&quot;</bucket>
+              <bucket>&quot;Ecko Unltd.&quot;</bucket>
+              <bucket>&quot;Stance&quot;</bucket>
+              <bucket>&quot;Mystique Boutique&quot;</bucket>
+              <bucket>&quot;Frasier Sterling&quot;</bucket>
+              <bucket>&quot;H by Hudson&quot;</bucket>
+              <bucket>&quot;Sekonda&quot;</bucket>
+              <bucket>&quot;Pimkie&quot;</bucket>
+              <bucket>&quot;Alternative Apparel&quot;</bucket>
+              <bucket>&quot;LORAC&quot;</bucket>
+              <bucket>&quot;Y.A.S&quot;</bucket>
+              <bucket>&quot;Buckle&quot;</bucket>
+              <bucket>&quot;Aveda&quot;</bucket>
+              <bucket>&quot;do Sport&quot;</bucket>
+              <bucket>&quot;Filson&quot;</bucket>
+              <bucket>&quot;Utility&quot;</bucket>
+              <bucket>&quot;Pink Clove&quot;</bucket>
+              <bucket>&quot;Ruby Rox&quot;</bucket>
+              <bucket>&quot;Melody Ehsani&quot;</bucket>
+              <bucket>&quot;Alison Lou&quot;</bucket>
+              <bucket>&quot;ONLY&quot;</bucket>
+              <bucket>&quot;St. John&quot;</bucket>
+              <bucket>&quot;Finders Keepers&quot;</bucket>
+              <bucket>&quot;Ambiance Apparel&quot;</bucket>
+              <bucket>&quot;Max Factor&quot;</bucket>
+              <bucket>&quot;Project Social T&quot;</bucket>
+              <bucket>&quot;Makeup Geek&quot;</bucket>
+              <bucket>&quot;BC Footwear&quot;</bucket>
+              <bucket>&quot;Schoffel&quot;</bucket>
+              <bucket>&quot;Mastermind&quot;</bucket>
+              <bucket>&quot;Deux Lux&quot;</bucket>
+              <bucket>&quot;SKAGEN&quot;</bucket>
+              <bucket>&quot;Vanity Fair&quot;</bucket>
+              <bucket>&quot;Giorgio Local Boyz&quot;</bucket>
+              <bucket>&quot;Paco&quot;</bucket>
+              <bucket>&quot;Velva Sheen&quot;</bucket>
+              <bucket>&quot;Sunspel&quot;</bucket>
+              <bucket>&quot;Maryam Nassir Zadeh&quot;</bucket>
+              <bucket>&quot;Ben Nye&quot;</bucket>
+              <bucket>&quot;Joe&apos;s Jeans&quot;</bucket>
+              <bucket>&quot;Port Authority&quot;</bucket>
+              <bucket>&quot;Winston&quot;</bucket>
+              <bucket>&quot;Eyeko&quot;</bucket>
+              <bucket>&quot;M&amp;Co.&quot;</bucket>
+              <bucket>&quot;Very Volatile&quot;</bucket>
+              <bucket>&quot;Dolce Vita&quot;</bucket>
+              <bucket>&quot;Christopher Shannon&quot;</bucket>
+              <bucket>&quot;Blvckclothing&quot;</bucket>
+              <bucket>&quot;Paco Rabanne&quot;</bucket>
+              <bucket>&quot;Kimora Lee Simmons&quot;</bucket>
+              <bucket>&quot;Schutz&quot;</bucket>
+              <bucket>&quot;Swatch&quot;</bucket>
+              <bucket>&quot;Chaser&quot;</bucket>
+              <bucket>&quot;Love Label&quot;</bucket>
+              <bucket>&quot;Luke 1977&quot;</bucket>
+              <bucket>&quot;Heidi Klum Intimates&quot;</bucket>
+              <bucket>&quot;Fashion Union&quot;</bucket>
+              <bucket>&quot;Selected Homme&quot;</bucket>
+              <bucket>&quot;Y/Project&quot;</bucket>
+              <bucket>&quot;3x1&quot;</bucket>
+              <bucket>&quot;Tularosa&quot;</bucket>
+              <bucket>&quot;NaaNaa&quot;</bucket>
+              <bucket>&quot;So Wear It Declare It&quot;</bucket>
+              <bucket>&quot;Ginger Fizz&quot;</bucket>
+              <bucket>&quot;kensie&quot;</bucket>
+              <bucket>&quot;Karen Kane&quot;</bucket>
+              <bucket>&quot;Christian Siriano&quot;</bucket>
+              <bucket>&quot;Etro&quot;</bucket>
+              <bucket>&quot;Wåven&quot;</bucket>
+              <bucket>&quot;Paradise&quot;</bucket>
+              <bucket>&quot;Essie&quot;</bucket>
+              <bucket>&quot;Jezebel&quot;</bucket>
+              <bucket>&quot;Cruyff&quot;</bucket>
+              <bucket>&quot;Barbarian&quot;</bucket>
+              <bucket>&quot;Pop Boutique&quot;</bucket>
+              <bucket>&quot;Halston&quot;</bucket>
+              <bucket>&quot;Wild&quot;</bucket>
+              <bucket>&quot;Warner&apos;s&quot;</bucket>
+              <bucket>&quot;Mickey Unlimited&quot;</bucket>
+              <bucket>&quot;Northern Reflections&quot;</bucket>
+              <bucket>&quot;ABS&quot;</bucket>
+              <bucket>&quot;Poof&quot;</bucket>
+              <bucket>&quot;Elegant Moments&quot;</bucket>
+              <bucket>&quot;Sideout&quot;</bucket>
+              <bucket>&quot;Duke&quot;</bucket>
+              <bucket>&quot;Panache&quot;</bucket>
+              <bucket>&quot;Girls Tour&quot;</bucket>
+              <bucket>&quot;Police&quot;</bucket>
+              <bucket>&quot;Christopher Kane&quot;</bucket>
+              <bucket>&quot;Alice &amp; You&quot;</bucket>
+              <bucket>&quot;ADYN&quot;</bucket>
+              <bucket>&quot;Peter Thomas Roth&quot;</bucket>
+              <bucket>&quot;Tarina Tarantino&quot;</bucket>
+              <bucket>&quot;Lavon&quot;</bucket>
+              <bucket>&quot;Joseph&quot;</bucket>
+              <bucket>&quot;Tulchan&quot;</bucket>
+              <bucket>&quot;Oamc&quot;</bucket>
+              <bucket>&quot;Leith&quot;</bucket>
+              <bucket>&quot;Black Scale&quot;</bucket>
+              <bucket>&quot;Tiger of Sweden&quot;</bucket>
+              <bucket>&quot;Saturdays NYC&quot;</bucket>
+              <bucket>&quot;Evan Picone&quot;</bucket>
+              <bucket>&quot;Trina Turk&quot;</bucket>
+              <bucket>&quot;Oak + Fort&quot;</bucket>
+              <bucket>&quot;Roots&quot;</bucket>
+              <bucket>&quot;Bell &amp; Howell&quot;</bucket>
+              <bucket>&quot;Articles of Society&quot;</bucket>
+              <bucket>&quot;Closet London&quot;</bucket>
+              <bucket>&quot;Araks&quot;</bucket>
+              <bucket>&quot;All Things Mochi&quot;</bucket>
+              <bucket>&quot;Lauren Brooke&quot;</bucket>
+              <bucket>&quot;EVE LOM&quot;</bucket>
+              <bucket>&quot;Avenue&quot;</bucket>
+              <bucket>&quot;Vitaly&quot;</bucket>
+              <bucket>&quot;Kevyn Aucoin&quot;</bucket>
+              <bucket>&quot;C/meo Collective&quot;</bucket>
+              <bucket>&quot;Citizens of Humanity&quot;</bucket>
+              <bucket>&quot;Chocoolate&quot;</bucket>
+              <bucket>&quot;LC Lauren Conrad&quot;</bucket>
+              <bucket>&quot;Blooming &amp; Co.&quot;</bucket>
+              <bucket>&quot;Body Central&quot;</bucket>
+              <bucket>&quot;Philosophy Apparel&quot;</bucket>
+              <bucket>&quot;Wacoal&quot;</bucket>
+              <bucket>&quot;Chantelle&quot;</bucket>
+              <bucket>&quot;Rock and Republic&quot;</bucket>
+              <bucket>&quot;Top Stitch&quot;</bucket>
+              <bucket>&quot;Cable &amp; Gauge&quot;</bucket>
+              <bucket>&quot;Surf Gypsy&quot;</bucket>
+              <bucket>&quot;Parker&quot;</bucket>
+              <bucket>&quot;Walmart&quot;</bucket>
+              <bucket>&quot;Preen&quot;</bucket>
+              <bucket>&quot;Susan Bristol&quot;</bucket>
+              <bucket>&quot;BOOB&quot;</bucket>
+              <bucket>&quot;3LAB&quot;</bucket>
+              <bucket>&quot;See You Monday&quot;</bucket>
+              <bucket>&quot;Aubade&quot;</bucket>
+              <bucket>&quot;Maidenform&quot;</bucket>
+              <bucket>&quot;butter LONDON&quot;</bucket>
+              <bucket>&quot;Ann Demeulemeester&quot;</bucket>
+              <bucket>&quot;Popular Sports&quot;</bucket>
+              <bucket>&quot;360 Cashmere&quot;</bucket>
+              <bucket>&quot;36572&quot;</bucket>
+              <bucket>%all%</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:Calculation_382524550259650562:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:Calculation_382524550259650562:nk]</rows>
+        <cols>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[sum:Calculation_382524550244126721:qk]</cols>
+      </table>
+      <simple-id uuid='{599A0036-2266-4237-BC21-CD4A1CF867AC}' />
+    </worksheet>
+    <worksheet name='5-Items without brand in Jewellery'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Calibri' fontsize='20'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Brand' datatype='string' name='[brand]' role='dimension' type='nominal' />
+            <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal' />
+            <column-instance column='[product_code]' derivation='CountD' name='[ctd:product_code:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[brand]' derivation='None' name='[none:brand:nk]' pivot='key' type='nominal' />
+            <column-instance column='[category]' derivation='None' name='[none:category:nk]' pivot='key' type='nominal' />
+            <column caption='Product Code' datatype='string' name='[product_code]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]'>
+            <groupfilter function='member' level='[none:brand:nk]' member='%null%' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' context='true'>
+            <groupfilter function='member' level='[none:category:nk]' member='&quot;Jewellery&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]</column>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='122' />
+            <format attr='height' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' value='60' />
+            <format attr='height' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]' value='73' />
+            <format attr='font-family' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]' value='Calibri' />
+            <format attr='font-size' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]' value='12' />
+            <format attr='font-weight' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]' value='bold' />
+            <format attr='font-family' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[ctd:product_code:qk]' value='Calibri' />
+            <format attr='font-size' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[ctd:product_code:qk]' value='12' />
+            <format attr='font-weight' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[ctd:product_code:qk]' value='bold' />
+            <format attr='border-style' value='solid' />
+            <format attr='border-color' value='#000000' />
+            <format attr='border-width' value='2' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='height-header' value='64' />
+            <format attr='border-style' value='solid' />
+            <format attr='border-color' value='#000000' />
+            <format attr='border-width' value='1' />
+          </style-rule>
+          <style-rule element='field-labels'>
+            <format attr='font-family' value='Calibri' />
+            <format attr='font-size' value='12' />
+            <format attr='font-weight' value='bold' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-family' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]' value='Calibri' />
+            <format attr='font-size' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]' value='12' />
+            <format attr='font-size' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' value='12' />
+            <format attr='font-family' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' value='Calibri' />
+            <format attr='font-weight' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' value='normal' />
+            <format attr='font-weight' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]' value='normal' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-style' value='solid' />
+            <format attr='border-width' value='2' />
+            <format attr='border-color' value='#000000' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='line-pattern-only' scope='cols' value='solid' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-color' scope='rows' value='#000000' />
+            <format attr='stroke-color' scope='cols' value='#000000' />
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='stroke-size' scope='cols' value='1' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='cols' value='1' />
+            <format attr='stroke-size' scope='rows' value='1' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[ctd:product_code:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk] / [federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk])</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{593A4340-32AF-4140-9D94-0A9DCB18E8F5}' />
+    </worksheet>
+    <worksheet name='6-Brands having transactions between 35 and 55'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Calibri' fontsize='20'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[price]/[rate]' />
+            </column>
+            <column caption='Brand-Updated' datatype='string' name='[Calculation_382524550259650562]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IFNULL([brand], &apos;Unknown&apos;)' />
+            </column>
+            <column caption='Brand' datatype='string' name='[brand]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_382524550259650562]' derivation='None' name='[none:Calculation_382524550259650562:nk]' pivot='key' type='nominal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+            <column-instance column='[Calculation_382524550244126721]' derivation='Sum' name='[sum:Calculation_382524550244126721:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:Calculation_382524550259650562:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[sum:Calculation_382524550244126721:qk]' shelf='rows' />
+          </shelf-sorts>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='header'>
+            <format attr='height-header' value='40' />
+          </style-rule>
+          <style-rule element='field-labels'>
+            <format attr='font-family' value='Calibri' />
+            <format attr='font-weight' value='bold' />
+            <format attr='font-size' value='14' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:Calculation_382524550259650562:nk]</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{58115788-9562-4CA8-9CBD-8E1C8611C860}' />
+    </worksheet>
+    <worksheet name='7-Number of pair of shoes purchased by AU'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Calibri' fontsize='20'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Buyer Country' datatype='string' name='[buyer_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column caption='Buyer Id' datatype='string' name='[buyer_id]' role='dimension' type='nominal' />
+            <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal' />
+            <column-instance column='[buyer_id]' derivation='Count' name='[cnt:buyer_id:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[buyer_country]' derivation='None' name='[none:buyer_country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[category]' derivation='None' name='[none:category:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]'>
+            <groupfilter function='member' level='[none:buyer_country:nk]' member='&quot;AU&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' context='true'>
+            <groupfilter function='member' level='[none:category:nk]' member='&quot;Shoes&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]</column>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='98' />
+            <format attr='height' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' value='63' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='height-header' value='32' />
+            <format attr='width' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' value='180' />
+            <format attr='width' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' value='120' />
+          </style-rule>
+          <style-rule element='field-labels'>
+            <format attr='font-size' value='12' />
+            <format attr='font-weight' value='bold' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-family' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' value='Calibri' />
+            <format attr='font-size' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk]' value='12' />
+            <format attr='font-family' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' value='Calibri' />
+            <format attr='font-size' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' value='12' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='font-family' value='Calibri' />
+            <format attr='font-size' value='12' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[cnt:buyer_id:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:category:nk] / [federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk])</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{E42496D1-8BCC-4193-AF19-64A8A5EAC03E}' />
+    </worksheet>
+    <worksheet name='8-Brand has the highest average transaction value'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontalignment='1' fontname='Calibri' fontsize='20'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[price]/[rate]' />
+            </column>
+            <column-instance column='[Calculation_382524550244126721]' derivation='Avg' name='[avg:Calculation_382524550244126721:qk]' pivot='key' type='quantitative' />
+            <column caption='Brand' datatype='string' name='[brand]' role='dimension' type='nominal' />
+            <column-instance column='[brand]' derivation='None' name='[none:brand:nk]' pivot='key' type='nominal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]'>
+            <groupfilter count='1' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='AVG([Calculation_382524550244126721])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:brand:nk]' user:ui-manual-selection='true' user:ui-manual-selection-all-when-empty='true' user:ui-manual-selection-is-empty='true' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[avg:Calculation_382524550244126721:qk]' shelf='rows' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:brand:nk]</rows>
+        <cols>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[avg:Calculation_382524550244126721:qk]</cols>
+      </table>
+      <simple-id uuid='{D87FA4B1-F857-43AB-AB3B-F383EBCD6EF3}' />
+    </worksheet>
+    <worksheet name='9-Items purchased by GB Buyers from GB sellers'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Calibri' fontsize='20'>9- Total value of items purchased by GB buyers from GB sellers</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[price]/[rate]' />
+            </column>
+            <column caption='Buyer Country' datatype='string' name='[buyer_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[buyer_country]' derivation='None' name='[none:buyer_country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[seller_country]' derivation='None' name='[none:seller_country:nk]' pivot='key' type='nominal' />
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+            <column caption='Seller Country' datatype='string' name='[seller_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[Calculation_382524550244126721]' derivation='Sum' name='[sum:Calculation_382524550244126721:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]'>
+            <groupfilter function='member' level='[none:buyer_country:nk]' member='&quot;GB&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk]' context='true'>
+            <groupfilter function='member' level='[none:seller_country:nk]' member='&quot;GB&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk]</column>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='height' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' value='64' />
+            <format attr='cell-w' value='80' />
+            <format attr='cell-h' value='20' />
+            <format attr='cell' value='20' />
+            <format attr='cell-q' value='100' />
+            <format attr='border-style' value='solid' />
+            <format attr='border-color' value='#000000' />
+            <format attr='border-width' value='1' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='height-header' value='30' />
+            <format attr='width' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk]' value='124' />
+            <format attr='width' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' value='116' />
+            <format attr='border-style' value='solid' />
+            <format attr='border-color' value='#000000' />
+            <format attr='border-width' value='1' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-style' value='solid' />
+            <format attr='border-color' value='#000000' />
+            <format attr='border-width' value='1' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-color' scope='cols' value='#000000' />
+            <format attr='stroke-color' scope='rows' value='#000000' />
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='stroke-size' scope='cols' value='1' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[sum:Calculation_382524550244126721:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='aspect' value='0' />
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk] / [federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk])</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{7FA942DD-CAF0-401B-9487-512DC02491C9}' />
+    </worksheet>
+    <worksheet name='Sheet 11'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[price]/[rate]' />
+            </column>
+            <column caption='International Sales' datatype='real' name='[Calculation_382524550306574344]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [buyer_country] != [seller_country]&#13;&#10;THEN [Calculation_382524550244126721] END' />
+            </column>
+            <column caption='Buyer Country' datatype='string' name='[buyer_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[buyer_country]' derivation='None' name='[none:buyer_country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[seller_country]' derivation='None' name='[none:seller_country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_382524550306574344]' derivation='Sum' name='[pcto:sum:Calculation_382524550306574344:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' type='PctTotal' />
+            </column-instance>
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+            <column caption='Seller Country' datatype='string' name='[seller_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+          </datasource-dependencies>
+          <natural-sort column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk]' direction='ASC' />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[pcto:sum:Calculation_382524550306574344:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk] / [federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:seller_country:nk])</rows>
+        <cols>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[pcto:sum:Calculation_382524550306574344:qk]</cols>
+        <subtotals>
+          <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]</column>
+        </subtotals>
+      </table>
+      <simple-id uuid='{EFB8D2A6-5FD2-473B-8C5B-F2BD36DFB034}' />
+    </worksheet>
+    <worksheet name='Sheet 12'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='sales' name='federated.05s0kvz1gmxv090zy9sjl02r5lii' />
+          </datasources>
+          <datasource-dependencies datasource='federated.05s0kvz1gmxv090zy9sjl02r5lii'>
+            <column caption='Price_EUR' datatype='real' name='[Calculation_382524550244126721]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[price]/[rate]' />
+            </column>
+            <column caption='International Sales' datatype='real' name='[Calculation_382524550306574344]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [buyer_country] != [seller_country]&#13;&#10;THEN [Calculation_382524550244126721] END' />
+            </column>
+            <column caption='Buyer Country' datatype='string' name='[buyer_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[buyer_country]' derivation='None' name='[none:buyer_country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_382524550306574344]' derivation='Sum' name='[pcto:sum:Calculation_382524550306574344:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' type='PctTotal' />
+            </column-instance>
+            <column caption='Price' datatype='real' name='[price]' role='measure' type='quantitative' />
+            <column caption='Rate' datatype='real' name='[rate]' role='dimension' type='ordinal' />
+            <column caption='Seller Country' datatype='string' name='[seller_country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[Calculation_382524550244126721]' derivation='Sum' name='[sum:Calculation_382524550244126721:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.05s0kvz1gmxv090zy9sjl02r5lii].[pcto:sum:Calculation_382524550306574344:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.05s0kvz1gmxv090zy9sjl02r5lii].[sum:Calculation_382524550244126721:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;RoW&quot;</bucket>
+              <bucket>&quot;US&quot;</bucket>
+              <bucket>&quot;GB&quot;</bucket>
+              <bucket>&quot;IE&quot;</bucket>
+              <bucket>&quot;AU&quot;</bucket>
+              <bucket>&quot;CA&quot;</bucket>
+              <bucket>&quot;DE&quot;</bucket>
+              <bucket>&quot;FR&quot;</bucket>
+              <bucket>&quot;IT&quot;</bucket>
+              <bucket>%all%</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[:Measure Names]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[:Measure Names]' value='150' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.05s0kvz1gmxv090zy9sjl02r5lii].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]</rows>
+        <cols>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[:Measure Names]</cols>
+        <subtotals>
+          <column>[federated.05s0kvz1gmxv090zy9sjl02r5lii].[none:buyer_country:nk]</column>
+        </subtotals>
+      </table>
+      <simple-id uuid='{6167BEDF-649D-49F3-A97A-BBC3295CC8A6}' />
+    </worksheet>
+  </worksheets>
+  <windows saved-dpi-scale-factor='1.25' source-height='30'>
+    <window class='worksheet' name='1-Number of Records'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='38'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{04EB8B4A-9FA3-4F33-A396-DC50FD7A1278}' />
+    </window>
+    <window class='worksheet' name='2-Total number of sellers'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='38'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <simple-id uuid='{20C9A7F5-0867-4770-9B5D-743BEBF66208}' />
+    </window>
+    <window class='worksheet' name='3-Total Sales in EUR'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='38'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{B0501CDD-8393-4BBF-ACCD-0ECDD4CCA1A8}' />
+    </window>
+    <window class='worksheet' name='4-Brand Purchases'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='38'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{A6A83D13-5E41-48C5-999E-30F6AA71AE2D}' />
+    </window>
+    <window class='worksheet' name='5-Items without brand in Jewellery'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='38'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{45B68BC1-83EA-4898-A41F-52D597FAA2F6}' />
+    </window>
+    <window class='worksheet' maximized='true' name='6-Brands having transactions between 35 and 55'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='38'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{D68E3E1E-8FA0-4465-AA4E-D020DA244B20}' />
+    </window>
+    <window class='worksheet' name='7-Number of pair of shoes purchased by AU'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{2F67903C-62CC-41BA-A266-89F4EC0A7DE0}' />
+    </window>
+    <window class='worksheet' name='8-Brand has the highest average transaction value'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{FAE45F97-95C3-44D2-B7FE-C295C79EEBC4}' />
+    </window>
+    <window class='worksheet' name='9-Items purchased by GB Buyers from GB sellers'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{15267C42-3D43-487A-8BE6-E5F39848F07A}' />
+    </window>
+    <window class='worksheet' name='10-Percentage of US buyers whitin US sellers'>
+      <cards>
+        <edge name='left'>
+          <strip size='200'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='38'>
+            <card type='columns' />
+          </strip>
+          <strip size='38'>
+            <card type='rows' />
+          </strip>
+          <strip size='38'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{E6890BD9-A800-4FC9-8058-5E79B53A6237}' />
+    </window>
+    <window class='worksheet' name='Sheet 11'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{587E796E-5A6A-4E43-83FF-26874057AB02}' />
+    </window>
+    <window class='worksheet' name='Sheet 12'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{763E8387-720C-41AE-B4E2-751DEB975661}' />
+    </window>
+  </windows>
+</workbook>
